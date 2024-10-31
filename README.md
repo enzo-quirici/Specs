@@ -2,14 +2,15 @@
 
 A Java application that displays detailed information about your PC's hardware.
 
+![img.png](img.png)
+
 ### Features:
 
-CPU Details : View your processor's model, physical and logical core count.
-GPU Information : See your graphics processor name and VRAM capacity.
-RAM Usage : Shows total, used, and free memory, without cached files.
-Operating System : Displays OS name and version.
+CPU Details :View your processor's model, physical and logical core count.  
+GPU Information : See your graphics processor name and VRAM capacity.  
+RAM Usage : Shows total, used, and free memory, without cached files.  
+Operating System : Displays OS name and version.  
 Auto Refresh : Set intervals to automatically update displayed information.
-Ideal for users who need to monitor hardware details quickly, Specs provides insights on demand with a single click in an intuitive interface.
 
 # Minimum Requirements :
 
