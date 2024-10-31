@@ -13,120 +13,18 @@ Ideal for users who need to monitor hardware details quickly, Specs provides ins
 Project Status :
 ### Legend
 
-- **Y (Green)** - Supported
-- **N (Red)** - Not Supported
-- **U (Gray)** - Untested or Unknown
-- **N (Yellow)** - Partially Supported or Special Case
-- **Icône** - Uses a generic icon for display
+- ✅ Yes (Supported)
+- ❌ No (Not Supported)
+- ⚠️ Partial or Special Case
+- 🟦 Untested or Unknown
 
-<table>
-  <tr>
-    <th>OS</th>
-    <th>Se Lance</th>
-    <th>Installateur</th>
-    <th>Version Standalone</th>
-    <th>Icône</th>
-    <th>Stress Test</th>
-    <th>OS</th>
-    <th>CPU</th>
-    <th>Ram</th>
-    <th>Vram</th>
-  </tr>
-  <tr>
-    <td>Windows 10</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Générique</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-  </tr>
-  <tr>
-    <td>Windows 11</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Générique</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-  </tr>
-  <tr>
-    <td>Arch Linux</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #cccccc;">U</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Générique</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ffcccc;">N</td>
-  </tr>
-  <tr>
-    <td>Ubuntu</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Générique</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ffcccc;">N</td>
-  </tr>
-  <tr>
-    <td>Debian</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Générique</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ffcccc;">N</td>
-  </tr>
-  <tr>
-    <td>Gentoo Linux</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #cccccc;">U</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Générique</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ffcccc;">N</td>
-  </tr>
-  <tr>
-    <td>Fedora</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ffeb99;">N</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Générique</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ffcccc;">N</td>
-  </tr>
-  <tr>
-    <td>Mac OS</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Générique</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-    <td style="background-color: #ccffcc;">Y</td>
-  </tr>
-</table>
-
+| OS            | Se Lance | Installateur | Version Standalone | Icône      | Stress Test | OS | CPU | RAM | VRAM |
+|---------------|----------|--------------|---------------------|------------|-------------|----|-----|------|------|
+| Windows 10    | ✅       | ✅           | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ✅   |
+| Windows 11    | ✅       | ✅           | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ✅   |
+| Arch Linux    | ✅       | 🟦           | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ❌   |
+| Ubuntu        | ✅       | ✅           | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ❌   |
+| Debian        | ✅       | ✅           | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ❌   |
+| Gentoo Linux  | ✅       | 🟦           | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ❌   |
+| Fedora        | ✅       | ⚠️          | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ❌   |
+| Mac OS        | ✅       | ✅           | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ✅   |
