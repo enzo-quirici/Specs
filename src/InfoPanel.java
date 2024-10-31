@@ -12,13 +12,46 @@ public class InfoPanel {
         String osVersion = System.getProperty("os.version").toLowerCase(); // Get the OS version
         String iconPath;
 
-        // Determine the icon path based on the OS
+        // Determine the icon path based on the OS and version
         if (osName.contains("win")) {
-            iconPath = "/icon/Windows 128x128.png";
+            if (osName.contains("10")) {
+                iconPath = "/icon/Windows 10 128x128.png";
+            } else if (osName.contains("11")) {
+                iconPath = "/icon/Windows 11 128x128.png";
+            } else {
+                iconPath = "/icon/Windows 128x128.png"; // Default Windows icon
+            }
         } else if (osName.contains("mac")) {
-            iconPath = "/icon/Mac OS 128x128.png";
+            if (osVersion.contains("11")) {
+                iconPath = "/icon/Mac OS 11 128x128.png";
+            } else if (osVersion.contains("12")) {
+                iconPath = "/icon/Mac OS 12 128x128.png";
+            } else if (osVersion.contains("13")) {
+                iconPath = "/icon/Mac OS 13 128x128.png";
+            } else if (osVersion.contains("14")) {
+                iconPath = "/icon/Mac OS 14 128x128.png";
+            } else if (osVersion.contains("15")) {
+                iconPath = "/icon/Mac OS 15 128x128.png";
+            } else {
+                iconPath = "/icon/Mac OS 128x128.png"; // Default Mac OS icon
+            }
         } else if (osName.contains("nix") || osName.contains("nux")) {
-            iconPath = "/icon/Linux 128x128.png";
+            // Check for specific Linux distributions
+            if (osVersion.contains("ubuntu")) {
+                iconPath = "/icon/Ubuntu Linux 128x128.png";
+            } else if (osVersion.contains("debian")) {
+                iconPath = "/icon/Debian Linux 128x128.png";
+            } else if (osVersion.contains("fedora")) {
+                iconPath = "/icon/Fedora Linux 128x128.png";
+            } else if (osVersion.contains("gentoo")) {
+                iconPath = "/icon/Gentoo Linux 128x128.png";
+            } else if (osVersion.contains("arch")) {
+                iconPath = "/icon/Arch Linux 128x128.png";
+            } else if (osVersion.contains("manjaro")) {
+                iconPath = "/icon/Manjaro Linux 128x128.png";
+            } else {
+                iconPath = "/icon/GNU Linux 128x128.png"; // Default Linux icon
+            }
         } else {
             iconPath = "/icon/Unknown 128x128.png"; // Default icon for unknown OS
         }
@@ -34,7 +67,7 @@ public class InfoPanel {
         if (cpuInfo.toLowerCase().contains("intel")) {
             iconPath = "/icon/Intel 128x128.png";
         } else if (cpuInfo.toLowerCase().contains("amd")) {
-            iconPath = "/icon/AMD Radeon 128x128.png";
+            iconPath = "/icon/AMD 128x128.png";
         } else {
             iconPath = "/icon/Unknown CPU 128x128.png"; // Default icon for unknown CPU
         }
@@ -55,7 +88,7 @@ public class InfoPanel {
         if (gpuInfo.toLowerCase().contains("intel")) {
             iconPath = "/icon/ARC 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("amd")) {
-            iconPath = "/icon/AMD 128x128.png";
+            iconPath = "/icon/AMD Radeon 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("nvidia")) {
             iconPath = "/icon/Nvidia 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("vmware")) {
