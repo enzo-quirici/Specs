@@ -11,13 +11,113 @@ Auto Refresh: Set intervals to automatically update displayed information.
 Ideal for users who need to monitor hardware details quickly, Specs provides insights on demand with a single click in an intuitive interface.
 
 Project Status :
-| OS             | Se Lance | Installateur | Version Standalone | Icône      | Stress Test | OS | CPU | Ram | Vram |
-|----------------|----------|--------------|---------------------|------------|-------------|----|-----|------|------|
-| Windows 10     | Y        | Y            | Y                   | Générique  | Y           | Y  | Y   | Y    | Y    |
-| Windows 11     | Y        | Y            | Y                   | Générique  | Y           | Y  | Y   | Y    | Y    |
-| Arch Linux     | Y        | U            | Y                   | Générique  | Y           | Y  | Y   | Y    | N    |
-| Ubuntu         | Y        | Y            | Y                   | Générique  | Y           | Y  | Y   | Y    | N    |
-| Debian         | Y        | Y            | Y                   | Générique  | Y           | Y  | Y   | Y    | N    |
-| Gentoo Linux   | Y        | U            | Y                   | Générique  | Y           | Y  | Y   | Y    | N    |
-| Fedora         | Y        | N            | Y                   | Générique  | Y           | Y  | Y   | Y    | N    |
-| Mac OS         | Y        | Y            | Y                   | Générique  | Y           | Y  | Y   | Y    | Y    |
+<table>
+  <tr>
+    <th>OS</th>
+    <th>Se Lance</th>
+    <th>Installateur</th>
+    <th>Version Standalone</th>
+    <th>Icône</th>
+    <th>Stress Test</th>
+    <th>OS</th>
+    <th>CPU</th>
+    <th>Ram</th>
+    <th>Vram</th>
+  </tr>
+  <tr>
+    <td>Windows 10</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Générique</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+  </tr>
+  <tr>
+    <td>Windows 11</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Générique</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+  </tr>
+  <tr>
+    <td>Arch Linux</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #cccccc;">U</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Générique</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ffcccc;">N</td>
+  </tr>
+  <tr>
+    <td>Ubuntu</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Générique</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ffcccc;">N</td>
+  </tr>
+  <tr>
+    <td>Debian</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Générique</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ffcccc;">N</td>
+  </tr>
+  <tr>
+    <td>Gentoo Linux</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #cccccc;">U</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Générique</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ffcccc;">N</td>
+  </tr>
+  <tr>
+    <td>Fedora</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ffeb99;">N</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Générique</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ffcccc;">N</td>
+  </tr>
+  <tr>
+    <td>Mac OS</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Générique</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+    <td style="background-color: #ccffcc;">Y</td>
+  </tr>
+</table>
