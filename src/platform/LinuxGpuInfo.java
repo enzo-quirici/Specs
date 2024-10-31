@@ -1,3 +1,5 @@
+//platform/WindowsGpuInfo.java
+
 package platform;
 
 import java.io.BufferedReader;
@@ -30,30 +32,13 @@ public class LinuxGpuInfo {
     public static long getGpuVram() {
         long vram = 0;
 
-        // Try getting VRAM from multiple sources
-        vram = getVramFromNvidiaSmi();
-        if (vram > 0) return vram; // Return if VRAM found
-
+        // Try getting VRAM from glxinfo first
         vram = getVramFromGlxInfo();
         if (vram > 0) return vram; // Return if VRAM found
 
+        // If not found, try lspci
         vram = getVramFromLspci();
         return vram; // Return 0 if not found
-    }
-
-    private static long getVramFromNvidiaSmi() {
-        try {
-            ProcessBuilder processBuilder = new ProcessBuilder("nvidia-smi", "--query-gpu=memory.total", "--format=csv,noheader");
-            Process process = processBuilder.start();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line = reader.readLine();
-            if (line != null) {
-                return Long.parseLong(line.replaceAll("[^0-9]", "").trim()); // VRAM en MB
-            }
-        } catch (Exception e) {
-            // Commande échouée ou non disponible
-        }
-        return 0;
     }
 
     private static long getVramFromGlxInfo() {
@@ -64,14 +49,14 @@ public class LinuxGpuInfo {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                if (line.toLowerCase().contains("total available memory")) { // Pour certains systèmes
-                    return Long.parseLong(line.replaceAll("[^0-9]", "").trim()); // VRAM en MB
-                } else if (line.toLowerCase().contains("video memory")) { // Pour d'autres systèmes
-                    return Long.parseLong(line.replaceAll("[^0-9]", "").trim()); // VRAM en MB
+                if (line.toLowerCase().contains("total available memory")) { // For some systems
+                    return Long.parseLong(line.replaceAll("[^0-9]", "").trim()); // VRAM in MB
+                } else if (line.toLowerCase().contains("video memory")) { // For other systems
+                    return Long.parseLong(line.replaceAll("[^0-9]", "").trim()); // VRAM in MB
                 }
             }
         } catch (Exception e) {
-            // Commande échouée ou non disponible
+            // Command failed or unavailable
         }
         return 0;
     }
@@ -89,18 +74,17 @@ public class LinuxGpuInfo {
                     foundVGA = true;
                 }
                 if (foundVGA && line.toLowerCase().contains("memory at")) {
-                    // Ici, vous devrez analyser la ligne pour obtenir la VRAM
                     String[] parts = line.split(" ");
                     for (String part : parts) {
-                        if (part.matches("[0-9a-f]+K")) { // Un exemple simple
-                            return Long.parseLong(part.replace("K", "").trim()) / 1024; // Convertir en MB
+                        if (part.matches("[0-9a-f]+K")) { // A simple example
+                            return Long.parseLong(part.replace("K", "").trim()) / 1024; // Convert to MB
                         }
                     }
                     break;
                 }
             }
         } catch (Exception e) {
-            // Commande échouée ou non disponible
+            // Command failed or unavailable
         }
         return 0;
     }
