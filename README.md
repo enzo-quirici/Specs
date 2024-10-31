@@ -11,6 +11,14 @@ Auto Refresh: Set intervals to automatically update displayed information.
 Ideal for users who need to monitor hardware details quickly, Specs provides insights on demand with a single click in an intuitive interface.
 
 Project Status :
+### Legend
+
+- **Y (Green)** - Supported
+- **N (Red)** - Not Supported
+- **U (Gray)** - Untested or Unknown
+- **N (Yellow)** - Partially Supported or Special Case
+- **Icône** - Uses a generic icon for display
+
 <table>
   <tr>
     <th>OS</th>
@@ -121,3 +129,4 @@ Project Status :
     <td style="background-color: #ccffcc;">Y</td>
   </tr>
 </table>
+
