@@ -33,7 +33,7 @@ Ideal for users who need to monitor hardware details quickly, Specs provides ins
 |---------------|-----------|---------------|---------------------|-------------|-------------|----|-----|------|------|
 | Windows 10    | ✅        | ✅            | ✅                  | Generic     | ✅          | ✅ | ✅  | ✅   | ✅   |
 | Windows 11    | ✅        | ✅            | ✅                  | Generic     | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Arch Linux    | ✅        | 🟧            | ✅                  | Generic     | ✅          | ✅ | ✅  | ✅   | ❌   |
+| Arch Linux    | ✅        | 🟧            | ✅                  | Generic     | ✅          | ✅ | ✅  | ✅   | ✅   |
 | Ubuntu        | ✅        | ✅            | ✅                  | Generic     | ✅          | ✅ | ✅  | ✅   | ❌   |
 | Debian        | ✅        | ✅            | ✅                  | Generic     | ✅          | ✅ | ✅  | ✅   | ❌   |
 | Gentoo Linux  | ✅        | 🟧            | ✅                  | Generic     | ✅          | ✅ | ✅  | ✅   | ❌   |
