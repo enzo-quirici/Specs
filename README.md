@@ -13,18 +13,18 @@ Ideal for users who need to monitor hardware details quickly, Specs provides ins
 Project Status :
 ### Legend
 
-- ✅ Yes (Supported)
-- ❌ No (Not Supported)
+- ✅ Yes
+- ❌ No
 - ⚠️ Partial or Special Case
-- 🟦 Untested or Unknown
+- 🟧 Non Aviable/Unknown
 
-| OS            | Se Lance | Installateur | Version Standalone | Icône      | Stress Test | OS | CPU | RAM | VRAM |
+| OS            | Launch   | Installator | Standalone Version   | Icon       | Stress Test | OS | CPU | RAM  | VRAM |
 |---------------|----------|--------------|---------------------|------------|-------------|----|-----|------|------|
-| Windows 10    | ✅       | ✅           | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Windows 11    | ✅       | ✅           | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Arch Linux    | ✅       | 🟦           | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ❌   |
-| Ubuntu        | ✅       | ✅           | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ❌   |
-| Debian        | ✅       | ✅           | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ❌   |
-| Gentoo Linux  | ✅       | 🟦           | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ❌   |
-| Fedora        | ✅       | ⚠️          | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ❌   |
-| Mac OS        | ✅       | ✅           | ✅                  | Générique  | ✅          | ✅ | ✅  | ✅   | ✅   |
+| Windows 10    | ✅       | ✅           | ✅                  | Generic  | ✅          | ✅ | ✅  | ✅   | ✅   |
+| Windows 11    | ✅       | ✅           | ✅                  | Generic  | ✅          | ✅ | ✅  | ✅   | ✅   |
+| Arch Linux    | ✅       | 🟧           | ✅                  | Generic  | ✅          | ✅ | ✅  | ✅   | ❌   |
+| Ubuntu        | ✅       | ✅           | ✅                  | Generic  | ✅          | ✅ | ✅  | ✅   | ❌   |
+| Debian        | ✅       | ✅           | ✅                  | Generic  | ✅          | ✅ | ✅  | ✅   | ❌   |
+| Gentoo Linux  | ✅       | 🟧           | ✅                  | Generic  | ✅          | ✅ | ✅  | ✅   | ❌   |
+| Fedora        | ✅       | ⚠️           | ✅                  | Generic  | ✅          | ✅ | ✅  | ✅   | ❌   |
+| Mac OS        | ✅       | ✅           | ✅                  | Generic  | ✅          | ✅ | ✅  | ✅   | ✅   |
