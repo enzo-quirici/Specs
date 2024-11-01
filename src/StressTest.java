@@ -23,7 +23,7 @@ public class StressTest {
         panel.setLayout(new BorderLayout());
 
         // Create a label for the countdown timer
-        JLabel timerLabel = new JLabel("Time left: 60 seconds", SwingConstants.CENTER);
+        JLabel timerLabel = new JLabel("Time left : 60 seconds", SwingConstants.CENTER);
         timerLabel.setFont(new Font("Serif", Font.BOLD, 20));
         panel.add(timerLabel, BorderLayout.NORTH);
 
@@ -40,7 +40,7 @@ public class StressTest {
 
         // Input fields for selecting time duration (with default of 60 seconds)
         JPanel inputPanel = new JPanel(new GridLayout(3, 2)); // Change to 3 rows for time field and buttons
-        JLabel timeLabel = new JLabel("Test Duration (seconds): ");
+        JLabel timeLabel = new JLabel("Test Duration (seconds) : ");
         JTextField timeField = new JTextField("60", 5);  // Default to 60 seconds
         timeLabel.setLabelFor(timeField);
         inputPanel.add(timeLabel);
@@ -127,7 +127,7 @@ public class StressTest {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (timeRemaining > 0) {
-                    timerLabel.setText("Time left: " + timeRemaining + " seconds");
+                    timerLabel.setText("Time left : " + timeRemaining + " seconds");
                     timeRemaining--;
                 } else {
                     ((Timer) e.getSource()).stop();

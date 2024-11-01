@@ -34,7 +34,7 @@ public class Refresh {
         String[] options = {"1 second", "5 seconds", "10 seconds", "15 seconds", "60 seconds", "Custom", "Disabled"};
         String selected = (String) JOptionPane.showInputDialog(
                 parent,
-                "Select Auto Refresh Interval:",
+                "Select Auto Refresh Interval :",
                 "Auto Refresh",
                 JOptionPane.QUESTION_MESSAGE,
                 null,
@@ -61,7 +61,7 @@ public class Refresh {
                     setAutoRefresh(60, mainPanel); // 60 seconds
                     break;
                 case "Custom":
-                    String input = JOptionPane.showInputDialog(parent, "Enter custom interval in seconds (only numbers):");
+                    String input = JOptionPane.showInputDialog(parent, "Enter custom interval in seconds (only numbers) :");
                     if (input != null) {
                         try {
                             int customInterval = Integer.parseInt(input); // Interval in seconds

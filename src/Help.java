@@ -20,10 +20,10 @@ public class Help {
         // Add help text with explanations
         String helpContent = "Help Information:\n\n" +
                 "This application provides system specifications:\n\n" +
-                "1. **CPU**: Central Processing Unit. It is the primary component of a computer that performs most of the processing inside a computer.\n" +
-                "2. **GPU**: Graphics Processing Unit. It is responsible for rendering images, animations, and video for the computer's screen.\n" +
-                "3. **RAM**: Random Access Memory. It is the memory used by the CPU to store data that is being processed.\n" +
-                "4. **VRAM**: Video RAM. It is a special type of RAM used specifically to store image data for the GPU.\n\n" +
+                "1. CPU : Central Processing Unit. It is the primary component of a computer that performs most of the processing inside a computer.\n" +
+                "2. GPU : Graphics Processing Unit. It is responsible for rendering images, animations, and video for the computer's screen.\n" +
+                "3. RAM : Random Access Memory. It is the memory used by the CPU to store data that is being processed.\n" +
+                "4. VRAM : Video RAM. It is a special type of RAM used specifically to store image data for the GPU.\n\n" +
                 "You can view detailed information about your CPU, GPU, RAM, and more in the main application window.\n" +
                 "\n" +
                 "FAQ :\n" +

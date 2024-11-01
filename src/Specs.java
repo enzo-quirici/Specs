@@ -14,7 +14,7 @@ public class Specs {
     public static String getOperatingSystem() {
         String osName = System.getProperty("os.name").toLowerCase();
         String osVersion = System.getProperty("os.version");
-        return "Operating System: " + osName + "\nVersion: " + osVersion;
+        return "Operating System : " + osName + "\nVersion : " + osVersion;
     }
 
     // Method to get CPU information
@@ -37,7 +37,7 @@ public class Specs {
         int physicalCores = getPhysicalCores();
         int logicalCores = Runtime.getRuntime().availableProcessors(); // Logical cores (threads)
 
-        return "CPU: " + cpuName + "\nPhysical Cores: " + physicalCores + "\nLogical Cores: " + logicalCores;
+        return "CPU : " + cpuName + "\nPhysical Cores : " + physicalCores + "\nLogical Cores : " + logicalCores;
     }
 
     // Method to get the number of physical cores based on the OS
@@ -152,7 +152,7 @@ public class Specs {
             gpuName = "Unknown GPU";
         }
 
-        return "GPU: " + gpuName + "\nVRAM: " + gpuVram + " MB"; // Return GPU information
+        return "GPU : " + gpuName + "\nVRAM : " + gpuVram + " MB"; // Return GPU information
     }
 
     // Method to get RAM information (excluding cache and swap on macOS and Linux)
