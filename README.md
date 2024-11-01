@@ -69,7 +69,7 @@ sudo pacman -S mesa-demos
 ### Gentoo :
 On Gentoo, you can install glxinfo by emerging the mesa-progs package :
 ```
-sudo emerge --ask media-libs/mesa-progs
+sudo emerge --ask mesa-progs -av
 ```
 ### Verifying the Installation :
 To confirm that glxinfo is installed correctly, run :
