@@ -1,4 +1,4 @@
-//platform/WindowsGpuInfo.java
+// platform/LinuxGpuInfo.java
 
 package platform;
 
@@ -7,38 +7,71 @@ import java.io.InputStreamReader;
 
 public class LinuxGpuInfo {
 
+    // Méthode pour obtenir le nom du GPU
     public static String getGpuName() {
         String gpuName = "Unknown GPU";
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder("lspci");
+            // Essayer d'abord de récupérer le nom du GPU avec glxinfo
+            ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", "glxinfo | grep 'Device:'");
             Process process = processBuilder.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
 
             while ((line = reader.readLine()) != null) {
-                if (line.toLowerCase().contains("vga")) {
-                    gpuName = line.split(":")[2].trim(); // Extracts the GPU name
+                if (line.toLowerCase().contains("device")) {
+                    gpuName = line.split(":")[1].trim(); // Extraction du nom du GPU
+                    gpuName = removeUnwantedParenthesesContent(gpuName); // Supprimer le contenu indésirable
                     break;
                 }
             }
 
             process.waitFor();
         } catch (Exception e) {
-            gpuName = "Error retrieving GPU name";
+            // Si glxinfo échoue, nous n'avons pas besoin de changer gpuName
         }
+
+        // Si glxinfo échoue, essayer lspci
+        if (gpuName.equals("Unknown GPU")) { // Si on n'a pas encore trouvé le nom
+            try {
+                ProcessBuilder processBuilder = new ProcessBuilder("lspci");
+                Process process = processBuilder.start();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line;
+
+                while ((line = reader.readLine()) != null) {
+                    if (line.toLowerCase().contains("vga")) {
+                        gpuName = line.split(":")[2].trim(); // Extraction du nom du GPU
+                        gpuName = removeUnwantedParenthesesContent(gpuName); // Supprimer le contenu indésirable
+                        break;
+                    }
+                }
+
+                process.waitFor();
+            } catch (Exception e) {
+                gpuName = "Error retrieving GPU name"; // Gestion de l'erreur
+            }
+        }
+
         return gpuName;
     }
 
+    // Méthode pour supprimer le contenu entre parenthèses sauf pour (R), (r), (TM), (tm), (C) ou (c)
+    private static String removeUnwantedParenthesesContent(String name) {
+        // Supprimer le contenu entre parenthèses sauf pour (R), (r), (TM), (tm), (C), (c) et d'autres mentions
+        return name.replaceAll("\\s*\\((?![Rr]|TM|tm|C|c).*?\\)", ""); // Supprime les parenthèses sauf les mentions spécifiques
+    }
+
+    // Méthode pour obtenir la VRAM du GPU
     public static long getGpuVram() {
         long vram = 0;
 
-        // Try getting VRAM from glxinfo first
+        // Essayer d'abord d'obtenir la VRAM depuis glxinfo
         vram = getVramFromGlxInfo();
-        if (vram > 0) return vram; // Return if VRAM found
+        if (vram > 0) return vram; // Retourner si la VRAM a été trouvée
 
-        // If not found, try lspci
+        // Si non trouvée, essayer lspci
         vram = getVramFromLspci();
-        return vram; // Return 0 if not found
+        return vram; // Retourne 0 si non trouvée
     }
 
     private static long getVramFromGlxInfo() {
@@ -49,14 +82,14 @@ public class LinuxGpuInfo {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                if (line.toLowerCase().contains("total available memory")) { // For some systems
-                    return Long.parseLong(line.replaceAll("[^0-9]", "").trim()); // VRAM in MB
-                } else if (line.toLowerCase().contains("video memory")) { // For other systems
-                    return Long.parseLong(line.replaceAll("[^0-9]", "").trim()); // VRAM in MB
+                if (line.toLowerCase().contains("total available memory")) { // Pour certains systèmes
+                    return Long.parseLong(line.replaceAll("[^0-9]", "").trim()); // VRAM en Mo
+                } else if (line.toLowerCase().contains("video memory")) { // Pour d'autres systèmes
+                    return Long.parseLong(line.replaceAll("[^0-9]", "").trim()); // VRAM en Mo
                 }
             }
         } catch (Exception e) {
-            // Command failed or unavailable
+            // La commande a échoué ou est indisponible
         }
         return 0;
     }
@@ -76,15 +109,15 @@ public class LinuxGpuInfo {
                 if (foundVGA && line.toLowerCase().contains("memory at")) {
                     String[] parts = line.split(" ");
                     for (String part : parts) {
-                        if (part.matches("[0-9a-f]+K")) { // A simple example
-                            return Long.parseLong(part.replace("K", "").trim()) / 1024; // Convert to MB
+                        if (part.matches("[0-9a-f]+K")) { // Un exemple simple
+                            return Long.parseLong(part.replace("K", "").trim()) / 1024; // Convertir en Mo
                         }
                     }
                     break;
                 }
             }
         } catch (Exception e) {
-            // Command failed or unavailable
+            // La commande a échoué ou est indisponible
         }
         return 0;
     }

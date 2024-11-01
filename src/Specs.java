@@ -37,7 +37,7 @@ public class Specs {
         int physicalCores = getPhysicalCores();
         int logicalCores = Runtime.getRuntime().availableProcessors(); // Logical cores (threads)
 
-        return "CPU: " + cpuName + "\nPhysical Cores: " + physicalCores + "\nLogical Cores (Threads): " + logicalCores;
+        return "CPU: " + cpuName + "\nPhysical Cores: " + physicalCores + "\nLogical Cores: " + logicalCores;
     }
 
     // Method to get the number of physical cores based on the OS
@@ -80,23 +80,46 @@ public class Specs {
             return Runtime.getRuntime().availableProcessors(); // Fallback to logical processors
         }
     }
-
-    // Method to get the correct number of physical cores on Linux
+    // Méthode pour obtenir le nombre de cœurs physiques sur Linux
     private static int getLinuxPhysicalCores() throws IOException {
-        // Run the command to get the total number of CPUs (physical cores)
-        ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", "lscpu | grep '^CPU(s):' | awk '{print $2}'");
-        Process process = processBuilder.start();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        String line = reader.readLine();
+        int coresPerSocket = getLinuxCoresPerSocket();  // Nombre de cœurs par socket
+        int sockets = getLinuxSockets();                // Nombre de sockets
 
-        // Return the number of physical cores if found, otherwise fallback to logical processors
-        if (line != null && line.matches("\\d+")) {
-            return Integer.parseInt(line.trim()); // Return the total number of cores if found
+        if (coresPerSocket > 0 && sockets > 0) {
+            return coresPerSocket * sockets;  // Calcul du nombre total de cœurs physiques
         }
-        return Runtime.getRuntime().availableProcessors(); // Fallback to logical processors
+        return Runtime.getRuntime().availableProcessors(); // Fallback
     }
 
+    // Méthode pour obtenir le nombre de cœurs par socket sur Linux
+    private static int getLinuxCoresPerSocket() throws IOException {
+        ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c",
+                "LANG=C lscpu | grep 'Core(s) per socket:' | awk '{print $NF}'"
+        );
+        Process process = processBuilder.start();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String coresPerSocketLine = reader.readLine();
 
+        if (coresPerSocketLine != null && coresPerSocketLine.matches("\\d+")) {
+            return Integer.parseInt(coresPerSocketLine.trim());
+        }
+        return 0;  // Retourne 0 en cas d'échec
+    }
+
+    // Méthode pour obtenir le nombre de sockets sur Linux
+    private static int getLinuxSockets() throws IOException {
+        ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c",
+                "LANG=C lscpu | grep 'Socket(s):' | awk '{print $NF}'"
+        );
+        Process process = processBuilder.start();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        String socketsLine = reader.readLine();
+
+        if (socketsLine != null && socketsLine.matches("\\d+")) {
+            return Integer.parseInt(socketsLine.trim());
+        }
+        return 0;  // Retourne 0 en cas d'échec
+    }
     // Method to get physical cores on Mac
     private static int getMacPhysicalCores() throws IOException {
         ProcessBuilder processBuilder = new ProcessBuilder("sysctl", "-n", "hw.physicalcpu");

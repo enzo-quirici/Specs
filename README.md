@@ -77,7 +77,3 @@ To confirm that glxinfo is installed correctly, run :
 glxinfo | grep "OpenGL version"
 ```
 If glxinfo returns OpenGL version information, the installation was successful.
-
-# Known Issues :
-
--the number of CPU cores is not fair on Linux.

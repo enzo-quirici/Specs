@@ -1,4 +1,4 @@
-//InfoPanel.java
+// InfoPanel.java
 
 import javax.swing.*;
 import java.awt.*;
@@ -109,15 +109,17 @@ public class InfoPanel {
         JLabel iconLabel = new JLabel(icon);
         iconLabel.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5)); // 5-pixel margin to the right of the icon
 
-        JTextArea textArea = new JTextArea(info);
-        textArea.setEditable(false); // Make the text area non-editable
-        textArea.setFont(new Font("Monospaced", Font.PLAIN, 14)); // Use a monospaced font
-        textArea.setBackground(new Color(240, 240, 240)); // Light gray background for the text area
-        textArea.setMargin(new Insets(10, 10, 10, 10)); // Add padding
-        textArea.setFocusable(false); // Disable the cursor
+        // Use JTextPane for transparency
+        JTextPane textPane = new JTextPane();
+        textPane.setText(info);
+        textPane.setEditable(false); // Make the text area non-editable
+        textPane.setFont(new Font("Monospaced", Font.PLAIN, 14)); // Use a monospaced font
+        textPane.setBackground(new Color(0, 0, 0, 0)); // Set the background to transparent
+        textPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
+        textPane.setFocusable(false); // Disable the cursor
 
         panel.add(iconLabel); // Add the icon to the panel
-        panel.add(textArea); // Add the text next to the icon
+        panel.add(textPane); // Add the text next to the icon
 
         return panel;
     }
