@@ -28,16 +28,16 @@ Auto Refresh : Set intervals to automatically update displayed information.
 - ⚠️ Partial or Special Case
 - 🟧 Not Available/Unknown
 
-| OS            | Launch     | Installer     | Standalone Version  | Icon        | Stress Test  | OS | CPU  | RAM  | VRAM  |
-|---------------|------------|---------------|---------------------|-------------|--------------|----|------|------|-------|
-| Windows 10    | ✅        | ✅            | ✅                  | Generic     | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Windows 11    | ✅        | ✅            | ✅                  | Generic     | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Arch Linux    | ✅        | 🟧            | ✅                  | Generic     | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Ubuntu        | ✅        | ✅            | ✅                  | Generic     | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Debian        | ✅        | ✅            | ✅                  | Generic     | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Gentoo Linux  | ✅        | 🟧            | ✅                  | Generic     | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Fedora        | ✅        | ⚠️            | ✅                  | Generic     | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Mac OS        | ✅        | ✅            | ✅                  | Generic     | ✅          | ✅ | ✅  | ✅   | ✅   |
+| OS            | Launch     | Installer     | Standalone Version  | Icon  | Stress Test  | OS | CPU  | RAM  | VRAM  |
+|---------------|------------|---------------|---------------------|-------|--------------|----|------|------|-------|
+| Windows 10    | ✅        | ✅            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
+| Windows 11    | ✅        | ✅            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
+| Arch Linux    | ✅        | 🟧            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
+| Ubuntu        | ✅        | ✅            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
+| Debian        | ✅        | ✅            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
+| Gentoo Linux  | ✅        | 🟧            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
+| Fedora        | ✅        | ⚠️            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
+| Mac OS        | ✅        | ✅            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
 
 # Planned Features and Updates :
 
