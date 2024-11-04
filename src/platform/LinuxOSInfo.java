@@ -40,6 +40,11 @@ public class LinuxOSInfo {
             }
         }
 
+        // If osVersion is still the default value, use the default Java method to get the OS version
+        if (osVersion.equals("Unknown Linux")) {
+            osVersion = System.getProperty("os.version");
+        }
+
         return osVersion; // Return the determined OS version
     }
 }
