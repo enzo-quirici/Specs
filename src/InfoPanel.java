@@ -2,6 +2,9 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Objects;
 
 public class InfoPanel {
@@ -9,19 +12,23 @@ public class InfoPanel {
     // Method to get the OS icon
     public static ImageIcon getOsIcon() {
         String osName = System.getProperty("os.name").toLowerCase(); // Get the OS name
-        String osVersion = System.getProperty("os.version").toLowerCase(); // Get the OS version
+        String osVersion = ""; // Initialize the osVersion variable
         String iconPath;
 
-        // Determine the icon path based on the OS and version
+        // Handle Windows OS
         if (osName.contains("win")) {
-            if (osName.contains("10")) {
+            osVersion = System.getProperty("os.name").toLowerCase(); // Get the OS version
+            if (osVersion.contains("10")) {
                 iconPath = "/icon/Windows 10 128x128.png";
-            } else if (osName.contains("11")) {
+            } else if (osVersion.contains("11")) {
                 iconPath = "/icon/Windows 11 128x128.png";
             } else {
                 iconPath = "/icon/Windows 128x128.png"; // Default Windows icon
             }
-        } else if (osName.contains("mac")) {
+        }
+        // Handle macOS
+        else if (osName.contains("mac")) {
+            osVersion = System.getProperty("os.version").toLowerCase(); // Get the OS version
             if (osVersion.contains("11")) {
                 iconPath = "/icon/Mac OS 11 128x128.png";
             } else if (osVersion.contains("12")) {
@@ -35,19 +42,53 @@ public class InfoPanel {
             } else {
                 iconPath = "/icon/Mac OS 128x128.png"; // Default Mac OS icon
             }
-        } else if (osName.contains("nix") || osName.contains("nux")) {
-            // Check for specific Linux distributions
-            if (osVersion.contains("ubuntu")) {
+        }
+        // Handle Linux
+        else if (osName.contains("nix") || osName.contains("nux")) {
+            try {
+                // Read the OS name and version from /etc/os-release
+                ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", "grep -E '^(VERSION|NAME)=' /etc/os-release");
+                Process process = processBuilder.start();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line;
+                String name = null;
+                String version = null;
+
+                // Process the output to get name and version
+                while ((line = reader.readLine()) != null) {
+                    if (line.startsWith("NAME=")) {
+                        name = line.replace("NAME=", "").replace("\"", "").trim();
+                    } else if (line.startsWith("VERSION=")) {
+                        version = line.replace("VERSION=", "").replace("\"", "").trim();
+                        version = version.split("\\s*\\(")[0].trim(); // Remove parentheses content
+                    }
+                }
+
+                // Combine NAME and VERSION for the OS version
+                if (name != null && version != null) {
+                    osVersion = name + " " + version; // e.g., "Fedora Linux 40"
+                } else if (name != null) {
+                    osVersion = name; // Fallback if no version is found
+                } else {
+                    osVersion = "Unknown Linux"; // Default if both name and version are unknown
+                }
+            } catch (IOException e) {
+                e.printStackTrace(); // Print stack trace for debugging
+                osVersion = "Unknown Linux"; // Default if unable to determine
+            }
+
+            // Determine the icon path based on the OS version
+            if (osVersion.toLowerCase().contains("ubuntu")) {
                 iconPath = "/icon/Ubuntu Linux 128x128.png";
-            } else if (osVersion.contains("debian")) {
+            } else if (osVersion.toLowerCase().contains("debian")) {
                 iconPath = "/icon/Debian Linux 128x128.png";
-            } else if (osVersion.contains("fedora")) {
+            } else if (osVersion.toLowerCase().contains("fedora")) {
                 iconPath = "/icon/Fedora Linux 128x128.png";
-            } else if (osVersion.contains("gentoo")) {
+            } else if (osVersion.toLowerCase().contains("gentoo")) {
                 iconPath = "/icon/Gentoo Linux 128x128.png";
-            } else if (osVersion.contains("arch")) {
+            } else if (osVersion.toLowerCase().contains("arch")) {
                 iconPath = "/icon/Arch Linux 128x128.png";
-            } else if (osVersion.contains("manjaro")) {
+            } else if (osVersion.toLowerCase().contains("manjaro")) {
                 iconPath = "/icon/Manjaro Linux 128x128.png";
             } else {
                 iconPath = "/icon/GNU Linux 128x128.png"; // Default Linux icon
@@ -56,7 +97,9 @@ public class InfoPanel {
             iconPath = "/icon/Unknown 128x128.png"; // Default icon for unknown OS
         }
 
-        return new ImageIcon(Objects.requireNonNull(InfoPanel.class.getResource(iconPath))); // Load the icon
+        // Load the icon and handle potential issues
+        ImageIcon icon = new ImageIcon(Objects.requireNonNull(InfoPanel.class.getResource(iconPath), "Icon not found: " + iconPath));
+        return icon; // Return the loaded icon
     }
 
     // Method to get the CPU icon

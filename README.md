@@ -41,7 +41,7 @@ Auto Refresh : Set intervals to automatically update displayed information.
 
 # Planned Features and Updates :
 
-- RPM installer for Fedora.
+- New System for Linux Distro detection.
 - More icons depending on the operating system.
 
 # dependency :

@@ -12,9 +12,42 @@ public class Specs {
 
     // Method to get the operating system information
     public static String getOperatingSystem() {
-        String osName = System.getProperty("os.name").toLowerCase();
+        String osName = System.getProperty("os.name");
         String osVersion = System.getProperty("os.version");
-        return "Operating System : " + osName + "\nVersion : " + osVersion;
+
+        // If the OS is Linux, try to retrieve the name and version via /etc/os-release
+        if (osName.toLowerCase().equals("linux")) {
+            try {
+                ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", "grep -E '^(VERSION|NAME)=' /etc/os-release");
+                Process process = processBuilder.start();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line;
+                String name = null;
+                String version = null;
+
+                while ((line = reader.readLine()) != null) {
+                    if (line.startsWith("NAME=")) {
+                        name = line.replace("NAME=", "").replace("\"", "").trim();
+                    } else if (line.startsWith("VERSION=")) {
+                        // Extract version and remove any content in parentheses
+                        version = line.replace("VERSION=", "").replace("\"", "").trim();
+                        version = version.split("\\s*\\(")[0].trim(); // Remove content in parentheses
+                    }
+                }
+
+                // Combine NAME and VERSION into a single string for osVersion
+                if (name != null && version != null) {
+                    osVersion = name + " " + version; // Combine name and version
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "Error retrieving Linux OS information. Fallback to default properties.";
+            }
+        }
+
+        // Return the OS information (name and version)
+        return "Operating System: " + osName + "\nVersion: " + osVersion;
     }
 
     // Method to get CPU information
