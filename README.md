@@ -15,7 +15,7 @@ Auto Refresh : Set intervals to automatically update displayed information.
 # Minimum Requirements :
 
 🖥️ OS : Windows 10 or better / Linux 5.15 or better / Mac OS 11 or better (minimum for JDK 21)  
-⚙️ CPU : 1 Core 1 GHZ 64 bit CPU  
+⚙️ CPU : 1 Core 1 GHZ 64 bits CPU  
 💾 RAM : 2 GB of RAM  
 💿 Storage : 512 MB of free space  
 ☕ Java : JDK 21 or better (if you use the .jar version)
