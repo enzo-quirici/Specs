@@ -12,12 +12,11 @@ public class InfoPanel {
     // Method to get the OS icon
     public static ImageIcon getOsIcon() {
         String osName = System.getProperty("os.name").toLowerCase(); // Get the OS name
-        String osVersion = ""; // Initialize the osVersion variable
         String iconPath;
 
         // Handle Windows OS
         if (osName.contains("win")) {
-            osVersion = System.getProperty("os.name").toLowerCase(); // Get the OS version
+            String osVersion = System.getProperty("os.name").toLowerCase(); // Get the OS version
             if (osVersion.contains("10")) {
                 iconPath = "/icon/Windows 10 128x128.png";
             } else if (osVersion.contains("11")) {
@@ -28,7 +27,7 @@ public class InfoPanel {
         }
         // Handle macOS
         else if (osName.contains("mac")) {
-            osVersion = System.getProperty("os.version").toLowerCase(); // Get the OS version
+            String osVersion = System.getProperty("os.version").toLowerCase(); // Get the OS version
             if (osVersion.contains("11")) {
                 iconPath = "/icon/Mac OS 11 128x128.png";
             } else if (osVersion.contains("12")) {
@@ -45,38 +44,7 @@ public class InfoPanel {
         }
         // Handle Linux
         else if (osName.contains("nix") || osName.contains("nux")) {
-            try {
-                // Read the OS name and version from /etc/os-release
-                ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", "grep -E '^(VERSION|NAME)=' /etc/os-release");
-                Process process = processBuilder.start();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                String line;
-                String name = null;
-                String version = null;
-
-                // Process the output to get name and version
-                while ((line = reader.readLine()) != null) {
-                    if (line.startsWith("NAME=")) {
-                        name = line.replace("NAME=", "").replace("\"", "").trim();
-                    } else if (line.startsWith("VERSION=")) {
-                        version = line.replace("VERSION=", "").replace("\"", "").trim();
-                        version = version.split("\\s*\\(")[0].trim(); // Remove parentheses content
-                    }
-                }
-
-                // Combine NAME and VERSION for the OS version
-                if (name != null && version != null) {
-                    osVersion = name + " " + version; // e.g., "Fedora Linux 40"
-                } else if (name != null) {
-                    osVersion = name; // Fallback if no version is found
-                } else {
-                    osVersion = "Unknown Linux"; // Default if both name and version are unknown
-                }
-            } catch (IOException e) {
-                e.printStackTrace(); // Print stack trace for debugging
-                osVersion = "Unknown Linux"; // Default if unable to determine
-            }
-
+            String osVersion = LinuxOSInfo.getLinuxOSVersion(); // Get Linux version from the new class
             // Determine the icon path based on the OS version
             if (osVersion.toLowerCase().contains("ubuntu")) {
                 iconPath = "/icon/Ubuntu Linux 128x128.png";
