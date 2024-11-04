@@ -87,19 +87,3 @@ To confirm that glxinfo is installed correctly, run :
 glxinfo | grep "OpenGL version"
 ```
 If glxinfo returns OpenGL version information, the installation was successful.
-
-# Known Issues :
-
-## 1. The OS Icon does not display the logo of my Linux distribution.
-
-### Fix :
-
-- 1st case : Your distribution does not have an icon in the software.
-- 2st Case : It's a known bug which was fixed in the pre-release 1.1.
-
-## 2. On Ubuntu 24 with version .deb the icon displays an image that has nothing to do with it.
-![img_1.png](img_1.png)
-### Fix :
-- Restart and hope that fixes the problem.
-### Note :
-- This problem may only be present in a VM.
