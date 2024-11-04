@@ -42,7 +42,7 @@ Auto Refresh : Set intervals to automatically update displayed information.
 # Planned Features and Updates :
 
 - RPM installer for Fedora.
-- Metadata for the installer.
+- More icons depending on the operating system.
 
 # dependency :
 
