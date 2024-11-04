@@ -28,16 +28,16 @@ Auto Refresh : Set intervals to automatically update displayed information.
 - ⚠️ Partial or Special Case
 - 🟧 Not Available/Unknown
 
-| OS            | Launch     | Installer     | Standalone Version  | Icon  | Stress Test  | OS | CPU  | RAM  | VRAM  |
-|---------------|------------|---------------|---------------------|-------|--------------|----|------|------|-------|
-| Windows 10    | ✅        | ✅            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Windows 11    | ✅        | ✅            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Arch Linux    | ✅        | 🟧            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Ubuntu        | ✅        | ✅            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Debian        | ✅        | ✅            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Gentoo Linux  | ✅        | 🟧            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Fedora        | ✅        | ⚠️            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
-| Mac OS        | ✅        | ✅            | ✅                  | ✅    | ✅          | ✅ | ✅  | ✅   | ✅   |
+| OS            | Launch     | Installer    | Standalone Version  | Icon | Stress Test  | OS | CPU  | RAM  | VRAM  |
+|---------------|------------|--------------|---------------------|-----|--------------|----|------|------|-------|
+| Windows 10    | ✅        | ✅           | ✅                  | ✅  | ✅          | ✅ | ✅  | ✅   | ✅     |
+| Windows 11    | ✅        | ✅           | ✅                  | ✅  | ✅          | ✅ | ✅  | ✅   | ✅     |
+| Arch Linux    | ✅        | 🟧           | ✅                  | ✅  | ✅          | ✅ | ✅  | ✅   | ✅     |
+| Ubuntu        | ✅        | ⚠️           | ✅                  | ⚠️  | ✅          | ✅ | ✅  | ✅   | ✅     |
+| Debian        | ✅        | ✅           | ✅                  | ⚠️  | ✅          | ✅ | ✅  | ✅   | ✅     |
+| Fedora        | ✅        | ⚠️           | ✅                  | ⚠️  | ✅          | ✅ | ✅  | ✅   | ✅     |
+| Gentoo Linux  | ✅        | 🟧           | ✅                  | ✅  | ✅          | ✅ | ✅  | ✅   | ✅     |
+| Mac OS        | ✅        | ✅           | ✅                  | ✅  | ✅          | ✅ | ✅  | ✅   | ✅     |
 
 # Planned Features and Updates :
 
@@ -46,6 +46,17 @@ Auto Refresh : Set intervals to automatically update displayed information.
 
 # dependency :
 
+## libjpeg turbo 8 :
+
+This is a dependency that may be necessary to install the .deb file on certain Linux distributions based on Debian.
+
+### Debian :
+
+```bash
+wget http://mirrors.kernel.org/ubuntu/pool/main/libj/libjpeg-turbo/libjpeg-turbo8_2.1.2-0ubuntu1_amd64.deb  
+sudo apt install ./libjpeg-turbo8_2.1.2-0ubuntu1_amd64.deb
+```
+
 ## glxinfo :
 
 To enable GPU and VRAM information retrieval on Linux, this program requires `glxinfo`. Below are the instructions for installing `glxinfo` on Debian, Ubuntu, Fedora, Arch Linux, and Gentoo.
@@ -53,7 +64,7 @@ To enable GPU and VRAM information retrieval on Linux, this program requires `gl
 ### Debian / Ubuntu :
 On Debian or Ubuntu, `glxinfo` is part of the `mesa-utils` package :
 ```bash
-sudo apt-get update && sudo apt-get upgrade
+sudo apt-get update
 sudo apt-get install mesa-utils
 ```
 ### Fedora :
@@ -77,3 +88,19 @@ To confirm that glxinfo is installed correctly, run :
 glxinfo | grep "OpenGL version"
 ```
 If glxinfo returns OpenGL version information, the installation was successful.
+
+# Known Issues :
+
+The OS Icon does not display the logo of my Linux distribution.
+
+### Fix :
+
+- 1st case : Your distribution does not have an icon in the software.
+- 2st Case : It's a known bug which has not yet been corrected.
+
+On Ubuntu 24 with version .deb the icon displays an image that has nothing to do with it.
+![img_1.png](img_1.png)
+### Fix :
+- Restart and hope that fixes the problem.
+### Note :
+- This problem may only be present in a VM.
