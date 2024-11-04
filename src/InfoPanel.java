@@ -115,6 +115,9 @@ public class InfoPanel {
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Use FlowLayout to align to the left
         panel.setBorder(BorderFactory.createTitledBorder(title));
 
+        // Set the background color of the panel (optional)
+        panel.setBackground(new Color(240, 240, 240)); // Light gray background for the panel
+
         // Create a panel for the icon and text
         JLabel iconLabel = new JLabel(icon);
         iconLabel.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5)); // 5-pixel margin to the right of the icon
@@ -124,7 +127,7 @@ public class InfoPanel {
         textPane.setText(info);
         textPane.setEditable(false); // Make the text area non-editable
         textPane.setFont(new Font("Monospaced", Font.PLAIN, 14)); // Use a monospaced font
-        textPane.setBackground(new Color(0, 0, 0, 0)); // Set the background to transparent
+        textPane.setBackground(new Color(240, 240, 240)); // Light yellow background for the text pane
         textPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
         textPane.setFocusable(false); // Disable the cursor
 

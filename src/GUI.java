@@ -98,9 +98,11 @@ public class GUI {
         updateTextArea((JPanel) mainPanel.getComponent(3), Specs.getRamInfo());
     }
 
-    // Helper method to update the text area in a panel
+
+    // Helper method to update the text pane in a panel
     static void updateTextArea(JPanel panel, String newInfo) {
-        JTextArea textArea = (JTextArea) panel.getComponent(1); // Get the text area
-        textArea.setText(newInfo);
+        JTextPane textPane = (JTextPane) panel.getComponent(1); // Safe cast assuming the structure is correct
+        textPane.setText(newInfo);
     }
+
 }
