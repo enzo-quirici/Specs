@@ -127,7 +127,7 @@ public class InfoPanel {
         textPane.setText(info);
         textPane.setEditable(false); // Make the text area non-editable
         textPane.setFont(new Font("Monospaced", Font.PLAIN, 14)); // Use a monospaced font
-        textPane.setBackground(new Color(240, 240, 240)); // Light yellow background for the text pane
+        textPane.setBackground(new Color(240, 240, 240)); // gray background for the text pane
         textPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
         textPane.setFocusable(false); // Disable the cursor
 
