@@ -1,5 +1,3 @@
-//GUI.java
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
@@ -9,99 +7,125 @@ public class GUI {
     private static JFrame jframe;
     private static JPanel mainPanel; // Declare mainPanel here so it's accessible everywhere
 
+    static ImageIcon osIcon;
+    static ImageIcon cpuIcon;
+    static ImageIcon ramIcon;
+    static ImageIcon gpuIcon; // Icônes globales
+
     public static void main(String[] args) {
-        // Load the application icon
+        // Charger les icônes une seule fois au démarrage
+        loadIcons();
+
+        // Charger l'icône de l'application
         icon = new ImageIcon(Objects.requireNonNull(GUI.class.getResource("/icon/Icon 128x128.png")));
 
-        // Create the main window
+        // Créer la fenêtre principale
         jframe = new JFrame("Java Specs");
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setSize(1200, 600);
-        jframe.setLocationRelativeTo(null); // Center the window on the screen
-        jframe.setIconImage(icon.getImage()); // Set the window icon
+        jframe.setLocationRelativeTo(null); // Centrer la fenêtre à l'écran
+        jframe.setIconImage(icon.getImage()); // Définir l'icône de la fenêtre
 
-        // Create the menu bar
+        // Créer la barre de menu
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
 
-        // File menu items
+        // Éléments du menu File
         JMenuItem refreshMenuItem = new JMenuItem("Refresh");
-        refreshMenuItem.addActionListener(e -> refreshSpecs()); // Refresh via the button
+        refreshMenuItem.addActionListener(e -> refreshSpecs()); // Rafraîchir via le bouton
         fileMenu.add(refreshMenuItem);
 
-        // Settings menu
+        // Menu Settings
         JMenu settingsMenu = new JMenu("Settings");
         JMenuItem autoRefreshMenuItem = new JMenuItem("Auto Refresh");
-        autoRefreshMenuItem.addActionListener(e -> Refresh.showAutoRefreshDialog(jframe, mainPanel)); // Pass mainPanel here
+        autoRefreshMenuItem.addActionListener(e -> Refresh.showAutoRefreshDialog(jframe, mainPanel)); // Passer mainPanel ici
         settingsMenu.add(autoRefreshMenuItem);
 
-        // About menu
+        // Éléments du menu About
         JMenuItem aboutItem = new JMenuItem("About");
         aboutItem.addActionListener(e -> About.showAbout(jframe));
         settingsMenu.add(aboutItem);
         fileMenu.add(settingsMenu);
 
-        // Quit menu
+        // Menu Quitter
         JMenuItem quitMenuItem = new JMenuItem("Quit");
         quitMenuItem.addActionListener(e -> System.exit(0));
-        fileMenu.addSeparator(); // Separator before Quit
+        fileMenu.addSeparator(); // Séparateur avant Quit
         fileMenu.add(quitMenuItem);
 
-        // Add the File menu to the menu bar
+        // Ajouter le menu File à la barre de menu
         menuBar.add(fileMenu);
 
-        // Stress Test menu
-        JMenu StressTestMenu = new JMenu("Stress Test");
-        JMenuItem StressTestMenuItem = new JMenuItem("Stress Test");
-        StressTestMenuItem.addActionListener(e -> StressTest.showStressTest(jframe, icon));
-        StressTestMenu.add(StressTestMenuItem);
-        menuBar.add(StressTestMenu);
+        // Menu Stress Test
+        JMenu stressTestMenu = new JMenu("Stress Test");
+        JMenuItem stressTestMenuItem = new JMenuItem("Stress Test");
+        stressTestMenuItem.addActionListener(e -> StressTest.showStressTest(jframe, icon));
+        stressTestMenu.add(stressTestMenuItem);
+        menuBar.add(stressTestMenu);
 
-        // Help menu
+        // Menu Help
         JMenu helpMenu = new JMenu("Help");
         JMenuItem helpMenuItem = new JMenuItem("Help");
         helpMenuItem.addActionListener(e -> Help.showHelp(jframe, icon));
         helpMenu.add(helpMenuItem);
         menuBar.add(helpMenu);
 
-        // Create the main panel with GridLayout in 2x2
-        mainPanel = new JPanel(new GridLayout(2, 2, 10, 10)); // 2 rows and 2 columns for OS, CPU, GPU, and RAM
+        // Créer le panneau principal avec GridLayout en 2x2
+        mainPanel = new JPanel(new GridLayout(2, 2, 10, 10)); // 2 lignes et 2 colonnes pour OS, CPU, GPU, et RAM
 
-        // Create and add panels for each category
-        JPanel osPanel = InfoPanel.createInfoPanel("Operating System", Specs.getOperatingSystem(), InfoPanel.getOsIcon());
-        JPanel cpuPanel = InfoPanel.createInfoPanel("CPU", Specs.getCpuInfo(), InfoPanel.getCpuIcon(Specs.getCpuInfo()));
-        JPanel gpuPanel = InfoPanel.createInfoPanel("GPU", Specs.getGpuInfo(), InfoPanel.getGpuIcon(Specs.getGpuInfo()));
-        JPanel ramPanel = InfoPanel.createInfoPanel("RAM", Specs.getRamInfo(), InfoPanel.getRamIcon());
+        // Créer et ajouter les panneaux pour chaque catégorie
+        JPanel osPanel = InfoPanel.createInfoPanel("Operating System", Specs.getOperatingSystem(), osIcon);
+        JPanel cpuPanel = InfoPanel.createInfoPanel("CPU", Specs.getCpuInfo(), cpuIcon);
+        JPanel gpuPanel = InfoPanel.createInfoPanel("GPU", Specs.getGpuInfo(), gpuIcon);
+        JPanel ramPanel = InfoPanel.createInfoPanel("RAM", Specs.getRamInfo(), ramIcon);
 
         mainPanel.add(osPanel);
         mainPanel.add(cpuPanel);
         mainPanel.add(gpuPanel);
         mainPanel.add(ramPanel);
 
-        // Add components to the window
+        // Ajouter les composants à la fenêtre
         jframe.setJMenuBar(menuBar);
         jframe.add(mainPanel);
 
-        // Make the window visible
+        // Rendre la fenêtre visible
         jframe.setVisible(true);
 
-        // Start the auto-refresh timer with the default interval, passing mainPanel
+        // Démarrer le timer pour l'auto-refresh avec l'intervalle par défaut, en passant mainPanel
         Refresh.startAutoRefresh(mainPanel);
     }
 
-    // Method to refresh the system specifications
+    // Méthode pour rafraîchir les spécifications système
     private static void refreshSpecs() {
-        // Refresh specifications for each category
-        updateTextArea((JPanel) mainPanel.getComponent(0), Specs.getOperatingSystem());
-        updateTextArea((JPanel) mainPanel.getComponent(1), Specs.getCpuInfo());
-        updateTextArea((JPanel) mainPanel.getComponent(2), Specs.getGpuInfo());
-        updateTextArea((JPanel) mainPanel.getComponent(3), Specs.getRamInfo());
+        // Réutiliser les icônes déjà chargées
+        updateTextArea((JPanel) mainPanel.getComponent(0), Specs.getOperatingSystem(), osIcon);
+        updateTextArea((JPanel) mainPanel.getComponent(1), Specs.getCpuInfo(), cpuIcon);
+        updateTextArea((JPanel) mainPanel.getComponent(2), Specs.getGpuInfo(), gpuIcon);
+        updateTextArea((JPanel) mainPanel.getComponent(3), Specs.getRamInfo(), ramIcon);
     }
 
-    // Helper method to update the text pane in a panel
-    static void updateTextArea(JPanel panel, String newInfo) {
-        JTextPane textPane = (JTextPane) panel.getComponent(1); // Safe cast assuming the structure is correct
+    // Méthode pour charger les icônes une seule fois
+    private static void loadIcons() {
+        if (osIcon == null) {
+            osIcon = InfoPanel.getOsIcon();
+        }
+        if (cpuIcon == null) {
+            cpuIcon = InfoPanel.getCpuIcon(Specs.getCpuInfo());
+        }
+        if (ramIcon == null) {
+            ramIcon = InfoPanel.getRamIcon();
+        }
+        if (gpuIcon == null) {
+            gpuIcon = InfoPanel.getGpuIcon(Specs.getGpuInfo());
+        }
+    }
+
+    // Méthode d'assistance pour mettre à jour le texte dans les panneaux
+    static void updateTextArea(JPanel panel, String newInfo, ImageIcon icon) {
+        JTextPane textPane = (JTextPane) panel.getComponent(1);
         textPane.setText(newInfo);
-    }
 
+        JLabel iconLabel = (JLabel) panel.getComponent(0);
+        iconLabel.setIcon(icon);  // Mise à jour de l'icône
+    }
 }

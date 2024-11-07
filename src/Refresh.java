@@ -17,21 +17,27 @@ public class Refresh {
         autoRefreshExecutor.scheduleAtFixedRate(() -> refreshSpecs(mainPanel), 0, refreshInterval, TimeUnit.SECONDS);
     }
 
-    // Refresh system specifications
     private static void refreshSpecs(JPanel mainPanel) {
         if (mainPanel.getComponentCount() >= 4) {
             try {
-                GUI.updateTextArea((JPanel) mainPanel.getComponent(0), Specs.getOperatingSystem());
-                GUI.updateTextArea((JPanel) mainPanel.getComponent(1), Specs.getCpuInfo());
-                GUI.updateTextArea((JPanel) mainPanel.getComponent(2), Specs.getGpuInfo());
-                GUI.updateTextArea((JPanel) mainPanel.getComponent(3), Specs.getRamInfo());
+                // Mise à jour des informations dans chaque panneau
+                GUI.updateTextArea((JPanel) mainPanel.getComponent(0), Specs.getOperatingSystem(), GUI.osIcon);
+                GUI.updateTextArea((JPanel) mainPanel.getComponent(1), Specs.getCpuInfo(), GUI.cpuIcon);
+                GUI.updateTextArea((JPanel) mainPanel.getComponent(2), Specs.getGpuInfo(), GUI.gpuIcon);
+                GUI.updateTextArea((JPanel) mainPanel.getComponent(3), Specs.getRamInfo(), GUI.ramIcon);
+
+                // Demander au garbage collector de libérer la mémoire non utilisée après la mise à jour
+                System.gc();
+            } catch (ClassCastException e) {
+                System.err.println("Error casting component in mainPanel: " + e.getMessage());
             } catch (Exception e) {
-                System.err.println("Error updating system specs: " + e.getMessage());
+                System.err.println("Unexpected error while updating system specs: " + e.getMessage());
             }
         } else {
-            System.err.println("Insufficient components in mainPanel.");
+            System.err.println("Insufficient components in mainPanel. Expected 4, found: " + mainPanel.getComponentCount());
         }
     }
+
 
     // Display Auto Refresh dialog
     public static void showAutoRefreshDialog(JFrame parent, JPanel mainPanel) {
