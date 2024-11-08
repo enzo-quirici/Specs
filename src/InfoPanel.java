@@ -32,13 +32,13 @@ public class InfoPanel {
         if (osName.contains("win")) {
             if (osName.contains("10")) return "/icon/Windows 10 128x128.png";
             if (osName.contains("11")) return "/icon/Windows 11 128x128.png";
-            return "/icon/Windows 128x128.png"; // Default Windows icon
+            return "/icon/Microsoft Windows 128x128.png";
         } else if (osName.contains("mac")) {
             return getMacOsIconPath(osVersion);
         } else if (osName.contains("nix") || osName.contains("nux")) {
             return getLinuxOsIconPath(LinuxOSInfo.getLinuxOSVersion());
         } else {
-            return "/icon/Unknown 128x128.png"; // Default for unknown OS
+            return "/icon/Unknown 128x128.png";
         }
     }
 
@@ -49,7 +49,7 @@ public class InfoPanel {
         if (osVersion.contains("13")) return "/icon/Mac OS 13 128x128.png";
         if (osVersion.contains("14")) return "/icon/Mac OS 14 128x128.png";
         if (osVersion.contains("15")) return "/icon/Mac OS 15 128x128.png";
-        return "/icon/Mac OS 128x128.png"; // Default Mac OS icon
+        return "/icon/Apple Mac OS 128x128.png"; // Default Mac OS icon
     }
 
     // Get Linux OS icon path based on the version (Ubuntu, Debian, etc.)
@@ -59,36 +59,50 @@ public class InfoPanel {
         if (osVersion.toLowerCase().contains("fedora")) return "/icon/Fedora Linux 128x128.png";
         if (osVersion.toLowerCase().contains("gentoo")) return "/icon/Gentoo Linux 128x128.png";
         if (osVersion.toLowerCase().contains("arch")) return "/icon/Arch Linux 128x128.png";
+        if (osVersion.toLowerCase().contains("pop")) return "/icon/POP OS Linux 128x128.png";
+        if (osVersion.toLowerCase().contains("zorin")) return "/icon/Zorin OS Linux 128x128.png";
         if (osVersion.toLowerCase().contains("manjaro")) return "/icon/Manjaro Linux 128x128.png";
-        return "/icon/GNU Linux 128x128.png"; // Default Linux icon
+        if (osVersion.toLowerCase().contains("elementary")) return "/icon/Elementary OS Linux 128x128.png";
+        if (osVersion.toLowerCase().contains("nix")) return "/icon/Nix OS Linux 128x128.png";
+        if (osVersion.toLowerCase().contains("red") || osVersion.toLowerCase().contains("hat")) return "/icon/Red Hat Linux 128x128.png";
+        return "/icon/GNU Linux 128x128.png";
     }
 
     // Method to get the CPU icon
     public static ImageIcon getCpuIcon(String cpuInfo) {
         String iconPath = cpuInfo.toLowerCase().contains("intel") ? "/icon/Intel 128x128.png" :
                 cpuInfo.toLowerCase().contains("amd") ? "/icon/AMD 128x128.png" :
-                        "/icon/Unknown CPU 128x128.png"; // Default CPU icon
+                        cpuInfo.toLowerCase().contains("apple") ? "/icon/Apple CPU 128x128.png" :
+                                "/icon/Unknown CPU 128x128.png";
         return loadIcon(iconPath);
     }
 
     // Method to get the RAM icon
     public static ImageIcon getRamIcon() {
-        return loadIcon("/icon/RAM 128x128.png"); // Load RAM icon
+        return loadIcon("/icon/RAM 128x128.png");
     }
 
     // Method to get the GPU icon
     public static ImageIcon getGpuIcon(String gpuInfo) {
         String iconPath;
-        if (gpuInfo.toLowerCase().contains("intel")) {
-            iconPath = "/icon/ARC 128x128.png";
+        if (gpuInfo.toLowerCase().contains("arc")) {
+            iconPath = "/icon/Intel ARC 128x128.png";
+        } else if (gpuInfo.toLowerCase().contains("intel")) {
+            iconPath = "/icon/Intel HD Graphics 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("amd")) {
+            iconPath = "/icon/AMD Radeon 128x128.png";
+        } else if (gpuInfo.toLowerCase().contains("radeon")) {
             iconPath = "/icon/AMD Radeon 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("nvidia")) {
             iconPath = "/icon/Nvidia 128x128.png";
-        } else if (gpuInfo.toLowerCase().contains("vmware")) {
+        } else if (gpuInfo.toLowerCase().contains("apple")) {
+            iconPath = "/icon/Apple GPU 128x128.png";
+        } else if (gpuInfo.toLowerCase().contains("VMware")) {
             iconPath = "/icon/VMware 128x128.png";
+        } else if (gpuInfo.toLowerCase().contains("Virtual")) {
+                iconPath = "/icon/Virtual Machine 128x128.png";
         } else {
-            iconPath = "/icon/Unknown GPU 128x128.png"; // Default GPU icon
+            iconPath = "/icon/Unknown GPU 128x128.png";
         }
         return loadIcon(iconPath);
     }

@@ -1,3 +1,5 @@
+//package/MacCpuInfo
+
 package platform;
 
 import java.io.BufferedReader;
@@ -10,14 +12,18 @@ public class MacCpuInfo {
         try {
             Process process = Runtime.getRuntime().exec("sysctl -n machdep.cpu.brand_string");
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            cpuName = reader.readLine().trim(); // Read and trim the line
+            String result = reader.readLine();
+            if (result != null && !result.trim().isEmpty()) {
+                cpuName = result.trim(); // Nom pour les processeurs Intel
+            } else {
+                cpuName = "Apple Silicon"; // Nom générique pour Apple Silicon
+            }
         } catch (Exception e) {
-            cpuName = "Error retrieving CPU name"; // In case of error
+            cpuName = "Error retrieving CPU name";
         }
         return cpuName;
     }
 
-    // Méthode pour obtenir le nombre de cœurs physiques sur macOS
     public static int getMacPhysicalCores() {
         int cores = Runtime.getRuntime().availableProcessors(); // Fallback to logical processors
         try {
@@ -31,5 +37,10 @@ public class MacCpuInfo {
             e.printStackTrace();
         }
         return cores; // Retourne le nombre de cœurs physiques
+    }
+
+    public static void main(String[] args) {
+        System.out.println("CPU Name: " + getCpuName());
+        System.out.println("Physical Cores: " + getMacPhysicalCores());
     }
 }

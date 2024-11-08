@@ -24,11 +24,7 @@ public class Help {
                 "2. GPU : Graphics Processing Unit. It is responsible for rendering images, animations, and video for the computer's screen.\n" +
                 "3. RAM : Random Access Memory. It is the memory used by the CPU to store data that is being processed.\n" +
                 "4. VRAM : Video RAM. It is a special type of RAM used specifically to store image data for the GPU.\n\n" +
-                "You can view detailed information about your CPU, GPU, RAM, and more in the main application window.\n" +
-                "\n" +
-                "FAQ :\n" +
-                "Why OS Version is 10 while I'm running Windows 11 ?\n" +
-                "Because Windows 11 Use NT 10 Kernel";
+                "You can view detailed information about your CPU, GPU, RAM, and more in the main application window.\n";
 
         helpText.setText(helpContent); // Set the help text in the text area
 
