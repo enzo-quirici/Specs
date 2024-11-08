@@ -1,4 +1,4 @@
-//StressTest.java
+// StressTest.java
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,9 +14,9 @@ public class StressTest {
     // Method to display the Stress Test window
     public static void showStressTest(JFrame parent, ImageIcon icon) {
         // Create a new window for the stress test
-        JFrame StressTestFrame = new JFrame("Stress Test");
-        StressTestFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        StressTestFrame.setSize(600, 400);
+        JFrame stressTestFrame = new JFrame("Stress Test");
+        stressTestFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        stressTestFrame.setSize(600, 400);
 
         // Panel to hold components
         JPanel panel = new JPanel();
@@ -70,7 +70,7 @@ public class StressTest {
                 boolean isMultiCore = multiCoreButton.isSelected();
                 startStressTest(duration, isMultiCore, timerLabel);
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(StressTestFrame, "Please enter a valid number for the time duration.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(stressTestFrame, "Please enter a valid number for the time duration.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
         inputPanel.add(startButton);
@@ -83,19 +83,19 @@ public class StressTest {
             if (stressExecutor != null && !stressExecutor.isShutdown()) {
                 stressExecutor.shutdownNow(); // Stop any ongoing stress test
             }
-            StressTestFrame.dispose();
+            stressTestFrame.dispose();
         });
         inputPanel.add(closeButton);
 
         panel.add(inputPanel, BorderLayout.SOUTH); // Button panel at the bottom
 
         // Set the icon for the window
-        StressTestFrame.setIconImage(icon.getImage());
+        stressTestFrame.setIconImage(icon.getImage());
 
         // Add everything to the main frame
-        StressTestFrame.add(panel);
-        StressTestFrame.setLocationRelativeTo(parent);
-        StressTestFrame.setVisible(true);
+        stressTestFrame.add(panel);
+        stressTestFrame.setLocationRelativeTo(parent);
+        stressTestFrame.setVisible(true);
     }
 
     // Method to start the stress test
@@ -130,7 +130,7 @@ public class StressTest {
                     timerLabel.setText("Time left : " + timeRemaining + " seconds");
                     timeRemaining--;
                 } else {
-                    ((Timer) e.getSource()).stop();
+                    ((Timer) e.getSource()).stop(); // Stop the countdown
                     stressExecutor.shutdownNow(); // End the stress test
                     timerLabel.setText("Test Complete");
                     JOptionPane.showMessageDialog(null, "Stress Test Complete!", "Success", JOptionPane.INFORMATION_MESSAGE);
