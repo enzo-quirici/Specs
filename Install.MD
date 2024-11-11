@@ -1,5 +1,6 @@
 # Installation :
-### To install the program on Arch Linux here is how to do it :
+# Arch Linux :
+## To install the program on Arch Linux here is how to do it :
 - Go to the Download folder :
 ``` Bash
 cd ~/Downloads
