@@ -1,6 +1,12 @@
-# Installation :
-# Arch Linux :
-## To install the program on Arch Linux here is how to do it :
+# Installation guide for the 1.2 Version :
+## Debian / Fedora Based Distro (GUI) :
+- Download the file for you distro in the release page of the project :  
+  - https://github.com/enzo-quirici/Specs/releases/
+  - For Debian and Ubuntu based distro chose the Debian version
+  - For Fedora based distro chose the Fedora version
+- Right click on the .deb / .rpm and open it with the application installer.
+- on the application installer click on install.
+## Arch Linux (CLI) :
 - Go to the Download folder :
 ``` Bash
 cd ~/Downloads
