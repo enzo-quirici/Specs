@@ -1,9 +1,9 @@
 # Installation guide for the 1.2 Version :
 ## Debian / Fedora Based Distro (GUI) :
-- Download the file for you distro in the release page of the project :
-  - For Debian and Ubuntu based distro chose the Debian version.
-  - For Fedora based distro chose the Fedora version.  
-    https://github.com/enzo-quirici/Specs/releases/
+- Download the file for you distro in the release page of the project :  
+  https://github.com/enzo-quirici/Specs/releases/  
+**For Debian based distro chose the Debian version.**  
+**For Fedora based distro chose the Fedora version.**
 - Right click on the .deb / .rpm and open it with the application installer.
 - on the application installer click on install.
 ## Arch Linux (CLI) :
