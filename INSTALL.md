@@ -17,7 +17,7 @@ curl https://github.com/enzo-quirici/Specs/releases/download/V1.2/Specs-Arch-Lin
 ```
 - Decompress the archive :
 ``` Bash
-bsdtar -xf Specs-Arch-Linux-1.2.zip
+bsdtar -xf Specs-1.2-Arch-Linux.zip
 ```
 - Go to the extracted file :
 ``` Bash
