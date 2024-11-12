@@ -1,10 +1,10 @@
-# Specs
+# Specs :
 
 A Java application that displays detailed information about your PC's hardware.
 
 ![img.png](img.png)
 
-### Features:
+### Features :
 
 CPU Details : View your processor's model, physical and logical core count.  
 GPU Information : See your graphics processor name and VRAM capacity.  
