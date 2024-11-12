@@ -36,7 +36,7 @@ Auto Refresh : Set intervals to automatically update displayed information.
 | Ubuntu        | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
 | Debian        | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
 | Fedora        | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
-| Gentoo Linux  | ✅        | 🟧        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Gentoo Linux  | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
 | Mac OS        | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
 
 # Planned Features and Updates :
