@@ -13,7 +13,7 @@ cd ~/Downloads
 ```
 - Copy the installer file :
 ``` Bash
-curl https://github.com/enzo-quirici/Specs/releases/download/V1.2/Specs-Arch-Linux-1.2.zip
+curl https://github.com/enzo-quirici/Specs/releases/download/V1.2/Specs-1.2-Arch-Linux.zip
 ```
 - Decompress the archive :
 ``` Bash
@@ -26,4 +26,25 @@ cd Specs-Arch-Linux
 - Install the app :
 ``` Bash
 makepkg -si
+```
+## Gentoo Linux (CLI) :
+- Go to the Download folder :
+``` Bash
+cd ~/Downloads
+```
+- Copy the installer file :
+``` Bash
+curl https://github.com/enzo-quirici/Specs/releases/download/V1.2/Specs-1.2-Gentoo-Linux.zip
+```
+- Decompress the archive :
+``` Bash
+bsdtar -xf Specs-1.2-Gentoo-Linux.zip
+```
+- Go to the extracted file :
+``` Bash
+cd Specs-Gentoo-Linux
+```
+- Install the app :
+``` Bash
+sudo ./Specs-Gentoo-Linux-Install.sh
 ```
