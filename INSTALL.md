@@ -44,7 +44,11 @@ bsdtar -xf Specs-1.2-Gentoo-Linux.zip
 ``` Bash
 cd Specs-Gentoo-Linux
 ```
+- Add permission to the app :
+``` Bash
+sudo chmod +x Specs-Gentoo-Installer.sh
+```
 - Install the app :
 ``` Bash
-sudo ./Specs-Gentoo-Linux-Install.sh
+sudo ./Specs-Gentoo-Linux-Installer.sh
 ```
