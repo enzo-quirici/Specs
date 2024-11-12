@@ -88,5 +88,5 @@ glxinfo | grep "OpenGL version"
 ```
 If glxinfo returns OpenGL version information, the installation was successful.
 
-# Known Issues
+# Known Issues :
 - Single core test doesn't use 1 core.
