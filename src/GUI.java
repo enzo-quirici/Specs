@@ -8,7 +8,6 @@ public class GUI {
     private static ImageIcon icon;
     private static JFrame jframe;
     private static JPanel mainPanel;
-
     static ImageIcon osIcon;
     static ImageIcon cpuIcon;
     static ImageIcon ramIcon;

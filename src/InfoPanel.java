@@ -44,6 +44,11 @@ public class InfoPanel {
 
     // Get macOS icon path based on version
     private static String getMacOsIconPath(String osVersion) {
+        if (osVersion.contains("10.11")) return "/icon/Mac OS 10.11 128x128.png";
+        if (osVersion.contains("10.12")) return "/icon/Mac OS 10.12 128x128.png";
+        if (osVersion.contains("10.13")) return "/icon/Mac OS 10.13 128x128.png";
+        if (osVersion.contains("10.14")) return "/icon/Mac OS 10.14 128x128.png";
+        if (osVersion.contains("10.15")) return "/icon/Mac OS 10.15 128x128.png";
         if (osVersion.contains("11")) return "/icon/Mac OS 11 128x128.png";
         if (osVersion.contains("12")) return "/icon/Mac OS 12 128x128.png";
         if (osVersion.contains("13")) return "/icon/Mac OS 13 128x128.png";
