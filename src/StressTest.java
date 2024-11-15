@@ -1,5 +1,3 @@
-// StressTest.java
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -30,8 +28,8 @@ public class StressTest {
         // Create a text area to provide user information
         JTextArea infoText = new JTextArea();
         infoText.setText("Welcome to the Stress Test tool!\n" +
-                "You can choose to run the test on a single core or across all available cores.\n" +
-                "The test will run CPU-intensive tasks to maximize CPU usage.");
+                "This test will run CPU-intensive tasks across all available cores " +
+                "to maximize CPU usage.");
         infoText.setEditable(false);
         infoText.setLineWrap(true);
         infoText.setWrapStyleWord(true);
@@ -39,21 +37,12 @@ public class StressTest {
         panel.add(new JScrollPane(infoText), BorderLayout.CENTER);
 
         // Input fields for selecting time duration (with default of 60 seconds)
-        JPanel inputPanel = new JPanel(new GridLayout(3, 2)); // Change to 3 rows for time field and buttons
+        JPanel inputPanel = new JPanel(new GridLayout(2, 2)); // Simplified to 2 rows for time field and buttons
         JLabel timeLabel = new JLabel("Test Duration (seconds) : ");
         JTextField timeField = new JTextField("60", 5);  // Default to 60 seconds
         timeLabel.setLabelFor(timeField);
         inputPanel.add(timeLabel);
         inputPanel.add(timeField);
-
-        // Radio buttons for Single-Core or Multi-Core stress test
-        JRadioButton singleCoreButton = new JRadioButton("Single-Core Test");
-        JRadioButton multiCoreButton = new JRadioButton("Multi-Core Test", true);  // Default to Multi-Core
-        ButtonGroup coreOptionGroup = new ButtonGroup();
-        coreOptionGroup.add(singleCoreButton);
-        coreOptionGroup.add(multiCoreButton);
-        inputPanel.add(singleCoreButton);
-        inputPanel.add(multiCoreButton);
 
         // Create a panel for buttons
         JPanel buttonPanel = new JPanel();
@@ -67,8 +56,7 @@ public class StressTest {
             String timeText = timeField.getText();
             try {
                 int duration = Integer.parseInt(timeText);
-                boolean isMultiCore = multiCoreButton.isSelected();
-                startStressTest(duration, isMultiCore, timerLabel);
+                startStressTest(duration, timerLabel); // Always use multi-core mode
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(stressTestFrame, "Please enter a valid number for the time duration.", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -99,8 +87,8 @@ public class StressTest {
     }
 
     // Method to start the stress test
-    private static void startStressTest(int duration, boolean isMultiCore, JLabel timerLabel) {
-        int numCores = isMultiCore ? Runtime.getRuntime().availableProcessors() : 1;
+    private static void startStressTest(int duration, JLabel timerLabel) {
+        int numCores = Runtime.getRuntime().availableProcessors(); // Always use all available cores
         stressExecutor = Executors.newFixedThreadPool(numCores);
 
         // Create and start stress tasks
