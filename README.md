@@ -14,7 +14,7 @@ Auto Refresh : Set intervals to automatically update displayed information.
 
 # Minimum Requirements :
 
-🖥️ OS : Windows 10 or better / Linux 5.15 or better / Mac OS 11 or better (minimum for JDK 21)  
+🖥️ OS : Windows 10 or better / Linux 5.15 or better / Mac OS 10.11 or better (minimum for JDK 21)  
 ⚙️ CPU : 1 Core 1 GHZ 64 bits CPU  
 💾 RAM : 512 MB of RAM  
 💿 Storage : 512 MB of free space  
@@ -39,9 +39,6 @@ Auto Refresh : Set intervals to automatically update displayed information.
 | Gentoo Linux  | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
 | Mac OS        | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
 
-# Planned Features and Updates :
-
-- More icons depending on the operating system.
 
 # dependency :
 
@@ -87,6 +84,3 @@ To confirm that glxinfo is installed correctly, run :
 glxinfo | grep "OpenGL version"
 ```
 If glxinfo returns OpenGL version information, the installation was successful.
-
-# Known Issues :
-- Single core test doesn't use 1 core.
