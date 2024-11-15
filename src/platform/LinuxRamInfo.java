@@ -36,8 +36,8 @@ public class LinuxRamInfo {
             return "Error retrieving RAM information for Linux.";
         }
 
-        return "RAM (Total): " + totalPhysicalMemory + " MB\n" +
-                "RAM (Used): " + usedPhysicalMemory + " MB\n" +
-                "RAM (Free): " + freePhysicalMemory + " MB";
+        return "RAM (Total) : " + totalPhysicalMemory + " MB\n" +
+                "RAM (Used) : " + usedPhysicalMemory + " MB\n" +
+                "RAM (Free) : " + freePhysicalMemory + " MB";
     }
 }

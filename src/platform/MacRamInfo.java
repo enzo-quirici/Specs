@@ -51,9 +51,9 @@ public class MacRamInfo {
         }
 
         // Return the RAM information as a formatted string
-        return "RAM (Total): " + totalPhysicalMemory + " MB\n" +
-                "RAM (Used): " + usedPhysicalMemory + " MB\n" +
-                "RAM (Free): " + freePhysicalMemory + " MB";
+        return "RAM (Total) : " + totalPhysicalMemory + " MB\n" +
+                "RAM (Used) : " + usedPhysicalMemory + " MB\n" +
+                "RAM (Free) : " + freePhysicalMemory + " MB";
     }
 
     public static void main(String[] args) {

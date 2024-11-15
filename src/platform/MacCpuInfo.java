@@ -1,4 +1,4 @@
-//package/MacCpuInfo
+//package/MacCpuInfo.java
 
 package platform;
 
@@ -14,9 +14,9 @@ public class MacCpuInfo {
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String result = reader.readLine();
             if (result != null && !result.trim().isEmpty()) {
-                cpuName = result.trim(); // Nom pour les processeurs Intel
+                cpuName = result.trim(); // Name for Intel processors
             } else {
-                cpuName = "Apple Silicon"; // Nom générique pour Apple Silicon
+                cpuName = "Apple Silicon"; // Generic name for Apple Silicon
             }
         } catch (Exception e) {
             cpuName = "Error retrieving CPU name";
@@ -30,13 +30,13 @@ public class MacCpuInfo {
             Process process = Runtime.getRuntime().exec("sysctl -n hw.physicalcpu");
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line = reader.readLine();
-            if (line != null && line.matches("\\d+")) { // Vérifie si la ligne contient un nombre
-                cores = Integer.parseInt(line.trim()); // Parse le nombre de cœurs physiques
+            if (line != null && line.matches("\\d+")) { // Check if the line contains a number
+                cores = Integer.parseInt(line.trim()); // Parse the number of physical cores
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return cores; // Retourne le nombre de cœurs physiques
+        return cores; // Return the number of physical cores
     }
 
     public static void main(String[] args) {

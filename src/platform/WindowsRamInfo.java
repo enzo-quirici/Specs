@@ -12,8 +12,8 @@ public class WindowsRamInfo {
         long freePhysicalMemory = osMXBean.getFreeMemorySize() / (1024 * 1024); // Free memory in MB
         long usedPhysicalMemory = totalPhysicalMemory - freePhysicalMemory; // Used memory in MB
 
-        return "RAM (Total): " + totalPhysicalMemory + " MB\n" +
-                "RAM (Used): " + usedPhysicalMemory + " MB\n" +
-                "RAM (Free): " + freePhysicalMemory + " MB";
+        return "RAM (Total) : " + totalPhysicalMemory + " MB\n" +
+                "RAM (Used) : " + usedPhysicalMemory + " MB\n" +
+                "RAM (Free) : " + freePhysicalMemory + " MB";
     }
 }

@@ -1,4 +1,4 @@
-//platform/WindowsCpuInfo
+//platform/WindowsCpuInfo.java
 
 package platform;
 
