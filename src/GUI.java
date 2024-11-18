@@ -14,6 +14,9 @@ public class GUI {
     static ImageIcon gpuIcon; // Global icons
 
     public static void main(String[] args) {
+
+        Upload uploadHandler = new Upload();
+
         // Load icons once at startup
         loadIcons();
 
@@ -35,6 +38,11 @@ public class GUI {
         JMenuItem refreshMenuItem = new JMenuItem("Refresh");
         refreshMenuItem.addActionListener(e -> refreshSpecs()); // Refresh via the button
         fileMenu.add(refreshMenuItem);
+
+        // Upload menu items
+        JMenuItem uploadMenuItem = new JMenuItem("Validate");
+        uploadMenuItem.addActionListener(e -> uploadHandler.uploadSpecs());
+        fileMenu.add(uploadMenuItem);
 
         // Settings menu
         JMenu settingsMenu = new JMenu("Settings");
