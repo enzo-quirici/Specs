@@ -6,11 +6,11 @@ A Java application that displays detailed information about your PC's hardware.
 
 ### Features :
 
-CPU Details : View your processor's model, physical and logical core count.  
-GPU Information : See your graphics processor name and VRAM capacity.  
-RAM Usage : Shows total, used, and free memory, without cached files.  
-Operating System : Displays OS name and version.  
-Auto Refresh : Set intervals to automatically update displayed information.
+**CPU Details :** View your processor's model, physical and logical core count.  
+**GPU Information :** See your graphics processor name and VRAM capacity.  
+**RAM Usage :** Shows total, used, and free memory, without cached files.  
+**Operating System :** Displays OS name and version.  
+**Auto Refresh :** Set intervals to automatically update displayed information.
 
 # Minimum Requirements :
 
