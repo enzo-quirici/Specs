@@ -21,7 +21,7 @@ public class MacGpuInfo {
                     gpuName = line.split(":")[1].trim();
                     foundGpuSection = true;
                 } else if (line.contains("Apple") && line.contains("Graphics")) { // Apple Silicon (Generic Apple GPU)
-                    gpuName = "Apple Silicon GPU ";
+                    gpuName = "Apple Silicon";
                     foundGpuSection = true;
                 }
                 if (foundGpuSection && line.contains("VRAM")) {
