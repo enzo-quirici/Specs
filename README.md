@@ -1,10 +1,10 @@
 # Specs :
 
-A Java application that displays detailed information about your PC's hardware.
+### A Java application that displays detailed information about your PC's hardware.
 
 ![img.png](img.png)
 
-### Features :
+# Features :
 
 **CPU Details :** View your processor's model, physical and logical core count.  
 **GPU Information :** See your graphics processor name and VRAM capacity.  
@@ -44,8 +44,7 @@ A Java application that displays detailed information about your PC's hardware.
 - the validation feature is a feature that allows you to display information from multiple PCs to create statistics.
 ![img_1.png](img_1.png)
 - This feature requires a server to be used.  
-- currently there is no official server available.  
-- you can create one by using the guide to [create you own Specs Server](https://github.com/enzo-quirici/Specs-Server/).
+- currently there is no official server available, but you can create one by using the guide [how to create you own Specs Server](https://github.com/enzo-quirici/Specs-Server/).
 
 # dependency :
 
