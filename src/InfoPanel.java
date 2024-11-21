@@ -30,6 +30,9 @@ public class InfoPanel {
     // Determine OS icon path based on the OS and version
     private static String getOsIconPath(String osName, String osVersion) {
         if (osName.contains("win")) {
+            if (osName.contains("7")) return "/icon/Windows 7 128x128.png";
+            if (osName.contains("8")) return "/icon/Windows 8 128x128.png";
+            if (osName.contains("8.1")) return "/icon/Windows 8.1 128x128.png";
             if (osName.contains("10")) return "/icon/Windows 10 128x128.png";
             if (osName.contains("11")) return "/icon/Windows 11 128x128.png";
             return "/icon/Microsoft Windows 128x128.png";
