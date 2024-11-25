@@ -83,6 +83,8 @@ public class InfoPanel {
         String iconPath = cpuInfo.toLowerCase().contains("intel") ? "/icon/Intel 128x128.png" :
                 cpuInfo.toLowerCase().contains("amd") ? "/icon/AMD 128x128.png" :
                         cpuInfo.toLowerCase().contains("apple") ? "/icon/Apple CPU 128x128.png" :
+                                cpuInfo.toLowerCase().contains("arm") ? "/icon/ARM 128x128.png" :
+                                        cpuInfo.toLowerCase().contains("snapdragon") ? "/icon/Snapdragon 128x128.png" :
                                 "/icon/Unknown CPU 128x128.png";
         return loadIcon(iconPath);
     }
@@ -107,9 +109,17 @@ public class InfoPanel {
             iconPath = "/icon/Nvidia 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("apple")) {
             iconPath = "/icon/Apple GPU 128x128.png";
-        } else if (gpuInfo.toLowerCase().contains("VMware")) {
+        } else if (gpuInfo.toLowerCase().contains("arm")) {
+            iconPath = "/icon/ARM 128x128.png";
+        } else if (gpuInfo.toLowerCase().contains("mali")) {
+            iconPath = "/icon/Mali 128x128.png";
+        } else if (gpuInfo.toLowerCase().contains("helio")) {
+            iconPath = "/icon/Helio 128x128.png";
+        } else if (gpuInfo.toLowerCase().contains("adreno")) {
+            iconPath = "/icon/Adreno 128x128.png";
+        } else if (gpuInfo.toLowerCase().contains("vmware")) {
             iconPath = "/icon/VMware 128x128.png";
-        } else if (gpuInfo.toLowerCase().contains("Virtual")) {
+        } else if (gpuInfo.toLowerCase().contains("virtual")) {
                 iconPath = "/icon/Virtual Machine 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("vm")) {
             iconPath = "/icon/Virtual Machine 128x128.png";
