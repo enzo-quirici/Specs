@@ -64,6 +64,10 @@ public class Upload {
             // Save to JSON File
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Save JSON File");
+
+            // Set default filename to "Specs.json"
+            fileChooser.setSelectedFile(new java.io.File("Specs.json"));
+
             int userSelection = fileChooser.showSaveDialog(null);
 
             if (userSelection == JFileChooser.APPROVE_OPTION) {
@@ -75,6 +79,7 @@ public class Upload {
                     e.printStackTrace();
                 }
             }
+
         }
     }
 
@@ -129,7 +134,7 @@ public class Upload {
         }
 
         // Return VRAM as a string; if GPU VRAM is 0, assume it's unavailable
-        return gpuVram > 0 ? gpuVram + "MB" : "N/A";
+        return gpuVram > 0 ? String.valueOf(gpuVram) : "N/A";
     }
 
     // Helper methods to parse the system information into the required format
