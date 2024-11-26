@@ -8,7 +8,7 @@ public class About {
         // Load the icon from the Icon folder inside src
         ImageIcon icon = new ImageIcon(Objects.requireNonNull(GUI.class.getResource("/icon/Icon 128x128.png")));
         JOptionPane.showMessageDialog(parent,
-                "Java Specs\nVersion 1.4\n© 2024",
+                "Java Specs\nVersion 1.5\n© 2024",
                 "About",
                 JOptionPane.INFORMATION_MESSAGE,
                 icon);

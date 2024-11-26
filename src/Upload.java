@@ -3,6 +3,7 @@ import platform.MacGpuInfo;
 import platform.WindowsGpuInfo;
 
 import javax.swing.*;
+import java.io.FileWriter;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -11,11 +12,13 @@ public class Upload {
 
     // Main method called by the menu
     public void uploadSpecs() {
-        // 1. Ask for the URL of the site (where PHP will receive the data)
-        String siteUrl = JOptionPane.showInputDialog(null, "Enter the site URL to send data (e.g., http://localhost/receiver.php):", "Site URL", JOptionPane.QUESTION_MESSAGE);
+        // 1. Ask the user to choose between URL or JSON file
+        String[] options = {"Send to URL", "Save to JSON File"};
+        int choice = JOptionPane.showOptionDialog(null, "Choose where to send data:", "Upload Option",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
-        if (siteUrl == null || siteUrl.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Site URL is required!", "Error", JOptionPane.ERROR_MESSAGE);
+        if (choice == -1) {
+            JOptionPane.showMessageDialog(null, "Operation canceled.", "Info", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
@@ -41,12 +44,37 @@ public class Upload {
                 os, version, cpu, cores, threads, gpu, vram, ram
         );
 
-        // 5. Send the data to the site
-        System.out.println("Sending data: " + jsonData);  // For debugging, print the data being sent
-        if (sendDataToSite(siteUrl, jsonData)) {
-            JOptionPane.showMessageDialog(null, "Data sent successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(null, "Failed to send data. Please check the site URL.", "Error", JOptionPane.ERROR_MESSAGE);
+        // 5. Execute based on user choice
+        if (choice == 0) {
+            // Send to URL
+            String siteUrl = JOptionPane.showInputDialog(null, "Enter the site URL to send data (e.g., http://localhost/receiver.php):", "Site URL", JOptionPane.QUESTION_MESSAGE);
+
+            if (siteUrl == null || siteUrl.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Site URL is required!", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            System.out.println("Sending data: " + jsonData);  // For debugging, print the data being sent
+            if (sendDataToSite(siteUrl, jsonData)) {
+                JOptionPane.showMessageDialog(null, "Data sent successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed to send data. Please check the site URL.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else if (choice == 1) {
+            // Save to JSON File
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Save JSON File");
+            int userSelection = fileChooser.showSaveDialog(null);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                try (FileWriter fileWriter = new FileWriter(fileChooser.getSelectedFile())) {
+                    fileWriter.write(jsonData);
+                    JOptionPane.showMessageDialog(null, "Data saved successfully to JSON file!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Failed to save data to file. Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
