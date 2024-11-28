@@ -70,6 +70,7 @@ public class InfoPanel {
         if (osVersion.toLowerCase().contains("gentoo")) return "/icon/Gentoo Linux 128x128.png";
         if (osVersion.toLowerCase().contains("arch")) return "/icon/Arch Linux 128x128.png";
         if (osVersion.toLowerCase().contains("pop")) return "/icon/POP OS Linux 128x128.png";
+        if (osVersion.toLowerCase().contains("mint")) return "/icon/Linux Mint 128x128.png";
         if (osVersion.toLowerCase().contains("zorin")) return "/icon/Zorin OS Linux 128x128.png";
         if (osVersion.toLowerCase().contains("manjaro")) return "/icon/Manjaro Linux 128x128.png";
         if (osVersion.toLowerCase().contains("elementary")) return "/icon/Elementary OS Linux 128x128.png";
@@ -80,15 +81,38 @@ public class InfoPanel {
 
     // Method to get the CPU icon
     public static ImageIcon getCpuIcon(String cpuInfo) {
-        String iconPath = cpuInfo.toLowerCase().contains("intel") ? "/icon/Intel 128x128.png" :
-                cpuInfo.toLowerCase().contains("amd") ? "/icon/AMD 128x128.png" :
-                        cpuInfo.toLowerCase().contains("apple") ? "/icon/Apple CPU 128x128.png" :
-                                cpuInfo.toLowerCase().contains("arm") ? "/icon/ARM 128x128.png" :
-                                        cpuInfo.toLowerCase().contains("snapdragon") ? "/icon/Snapdragon 128x128.png" :
-                                "/icon/Unknown CPU 128x128.png";
+        cpuInfo = cpuInfo.toLowerCase();
+        String iconPath;
+
+        if (cpuInfo.contains("intel")) {
+            // Vérifier la génération Intel
+            if (cpuInfo.matches(".*\\b(\\d+)th gen\\b.*")) {
+                int generation = Integer.parseInt(cpuInfo.replaceAll(".*\\b(\\d+)th gen\\b.*", "$1"));
+                if (generation < 12) {
+                    iconPath = "/icon/Intel 11 Below 128x128.png";
+                } else {
+                    iconPath = "/icon/Intel 12 After 128x128.png";
+                }
+            } else {
+                iconPath = "/icon/Intel Legacy 128x128.png";
+            }
+        } else if (cpuInfo.contains("ryzen")) {
+            iconPath = "/icon/AMD Ryzen 128x128.png";
+        } else if (cpuInfo.contains("amd")) {
+            iconPath = "/icon/AMD 128x128.png";
+        } else if (cpuInfo.contains("apple")) {
+            iconPath = "/icon/Apple CPU 128x128.png";
+        } else if (cpuInfo.contains("arm")) {
+            iconPath = "/icon/ARM 128x128.png";
+        } else if (cpuInfo.contains("snapdragon")) {
+            iconPath = "/icon/Snapdragon 128x128.png";
+        } else {
+            // Logo inconnu si aucun CPU reconnu
+            iconPath = "/icon/Unknown CPU 128x128.png";
+        }
+
         return loadIcon(iconPath);
     }
-
     // Method to get the RAM icon
     public static ImageIcon getRamIcon() {
         return loadIcon("/icon/RAM 128x128.png");
