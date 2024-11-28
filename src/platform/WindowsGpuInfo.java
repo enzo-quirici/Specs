@@ -46,15 +46,20 @@ public class WindowsGpuInfo {
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
                 if (!line.isEmpty()) {
-                    vram = Long.parseLong(line) / (1024 * 1024); // Convert to MB
-                    break;
+                    try {
+                        long currentVram = Long.parseLong(line);
+                        vram = Math.max(vram, currentVram);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Error when converting VRAM" + line);
+                    }
                 }
             }
 
             process.waitFor();
         } catch (Exception e) {
-            vram = 0; // In case of error
+            System.err.println("Error retrieving VRAM Size :" + e.getMessage());
         }
-        return vram;
+
+        return vram / (1024 * 1024); // Conversion en MB
     }
 }
