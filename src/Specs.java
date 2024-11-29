@@ -14,6 +14,10 @@ public class Specs {
             osVersion = LinuxOSInfo.getLinuxOSVersion();
         }
 
+        // Replace dashes with spaces in both osName and osVersion
+        osName = osName.replace("-", " ");
+        osVersion = osVersion.replace("-", " ");
+
         // Return the OS information (name and version)
         return "Operating System : " + osName + "\nVersion : " + osVersion;
     }
@@ -33,6 +37,9 @@ public class Specs {
         } else {
             cpuName = "Unknown CPU";
         }
+
+        // Remove parentheses (and their content) from the CPU name
+        cpuName = cpuName.replaceAll("\\(.*?\\)", "").trim();
 
         // Get the number of physical cores based on the OS
         int physicalCores = getPhysicalCores();
@@ -78,8 +85,14 @@ public class Specs {
             gpuName = "Unknown GPU";
         }
 
+        // Remove parentheses (and their content) from the GPU name, except on Linux
+        if (!osName.contains("linux")) {
+            gpuName = gpuName.replaceAll("\\(.*?\\)", "").trim();
+        }
+
         return "GPU : " + gpuName + "\nVRAM : " + gpuVram + " MB"; // Return GPU information
     }
+
 
     // Method to get RAM information (delegated to OS-specific classes)
     public static String getRamInfo() {

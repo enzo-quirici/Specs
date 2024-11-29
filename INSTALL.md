@@ -1,4 +1,4 @@
-# Installation guide for the 1.3 Version :
+# Installation guide for the 1.5 Version :
 ## Debian / Fedora Based Distro (GUI) :
 - Download the file for you distro in the release page of the project :  
   https://github.com/enzo-quirici/Specs/releases/  
@@ -13,11 +13,11 @@ cd ~/Downloads
 ```
 - Copy the installer file :
 ``` Bash
-curl https://github.com/enzo-quirici/Specs/releases/download/V1.3/Specs-1.3-Arch-Linux.zip
+curl https://github.com/enzo-quirici/Specs/releases/download/V1.5/Specs-1.5-Arch-Linux.zip
 ```
 - Decompress the archive :
 ``` Bash
-bsdtar -xf Specs-1.3-Arch-Linux.zip
+bsdtar -xf Specs-1.5-Arch-Linux.zip
 ```
 - Go to the extracted file :
 ``` Bash
@@ -34,11 +34,11 @@ cd ~/Downloads
 ```
 - Copy the installer file :
 ``` Bash
-curl https://github.com/enzo-quirici/Specs/releases/download/V1.3/Specs-1.3-Gentoo-Linux.zip
+curl https://github.com/enzo-quirici/Specs/releases/download/V1.5/Specs-1.5-Gentoo-Linux.zip
 ```
 - Decompress the archive :
 ``` Bash
-bsdtar -xf Specs-1.3-Gentoo-Linux.zip
+bsdtar -xf Specs-1.5-Gentoo-Linux.zip
 ```
 - Go to the extracted file :
 ``` Bash
