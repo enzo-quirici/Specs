@@ -14,11 +14,11 @@
 
 # Minimum Requirements :
 
-🖥️ OS : Windows 10 or better / Linux 5.15 or better / Mac OS 10.11 or better (minimum for JDK 21)  
-⚙️ CPU : 1 Core 1 GHZ 64 bits CPU  
-💾 RAM : 512 MB of RAM  
-💿 Storage : 512 MB of free space  
-☕ Java : JDK 21 or better (if you use the .jar version)
+🖥️ OS : Windows 7 or better (Windows 10 is recommended) / Linux 5.15 or better / Mac OS 10.11 or better (For the .jar an os compatible with JDK 21)
+⚙️ CPU : 1 Core 1 GHZ 64 bits CPU
+💾 RAM : 512 MO of RAM
+💿 Storage : 512 Mo of free space
+☕ Java : JDK 21 or better (.jar)
 
 # Project Status :
 
@@ -28,16 +28,15 @@
 - ⚠️ Partial or Special Case
 - 🟧 Not Available/Unknown
 
-| OS            | Launch    | Installer | Standalone Version   | Icon | Stress Test | OS | CPU  | RAM  | VRAM  |
-|---------------|-----------|-----------|----------------------|------|-------------|----|------|------|-------|
-| Windows 10    | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
-| Windows 11    | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
-| Arch Linux    | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
-| Ubuntu        | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
-| Debian        | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
-| Fedora        | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
-| Gentoo Linux  | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
-| Mac OS        | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| OS           | Launch    | Installer | Standalone Version   | Icon | Stress Test | OS | CPU  | RAM  | VRAM  |
+|--------------|-----------|-----------|----------------------|------|-------------|----|------|------|-------|
+| Windows      | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Arch Linux   | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Ubuntu       | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Debian       | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Fedora       | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Gentoo Linux | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Mac OS       | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
 
 # Validation :
 
