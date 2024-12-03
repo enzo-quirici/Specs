@@ -45,6 +45,10 @@
 - This feature requires a server to be used.  
 - currently there is no official server available, but you can create one by using the guide [how to create you own Specs Server](https://github.com/enzo-quirici/Specs-Server/).
 
+# Windows 11 24H2
+
+- CPU and GPU name and VRAM not working because WMIC is not working anymore from Windows 11 24H2 and Widows Server 2012 No solution found yet.
+
 # dependency :
 
 ## libjpeg turbo 8 :
