@@ -45,9 +45,12 @@
 - This feature requires a server to be used.  
 - currently there is no official server available, but you can create one by using the guide [how to create you own Specs Server](https://github.com/enzo-quirici/Specs-Server/).
 
-# Windows 11 24H2
+# Windows 11
 
-- CPU and GPU name and VRAM not working because WMIC is not working anymore from Windows 11 24H2 and Widows Server 2012 No solution found yet.
+- CPU and GPU detection, are not working anymore because WMIC is no longer supported starting from Windows 11.
+- While it is possible to reactivate WMIC on Windows 11 by following the steps provided in this guide :  
+[How to install WMIC on Demand on Windows 11 ?](https://techcommunity.microsoft.com/blog/windows-itpro-blog/how-to-install-wmic-feature-on-demand-on-windows-11/4189530)
+- this solution does not work for Windows Server 2012 and later.
 
 # dependency :
 
