@@ -14,7 +14,7 @@
 
 # Minimum Requirements :
 
-🖥️ OS : Windows 7 or better (Windows 10 is recommended) / Linux 5.15 or better / Mac OS 10.11 or better (For the .jar an os compatible with JDK 21)  
+🖥️ OS : Windows 7 or better (Windows 10 is recommended) / Linux 5.15 or better / Mac OS 10.11 or better
 ⚙️ CPU : 1 Core 1 GHZ 64 bits CPU  
 💾 RAM : 512 MO of RAM  
 💿 Storage : 512 Mo of free space  
