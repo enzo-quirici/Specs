@@ -51,6 +51,7 @@
 - While it is possible to reactivate WMIC on Windows 11 by following the steps provided in this guide :  
 [How to install WMIC on Demand on Windows 11 ?](https://techcommunity.microsoft.com/blog/windows-itpro-blog/how-to-install-wmic-feature-on-demand-on-windows-11/4189530)
 - this solution does not work for Windows Server 2012 and later.
+- This is going to be fix in 1.6.
 
 # dependency :
 
