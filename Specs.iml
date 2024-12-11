@@ -8,5 +8,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="MigLayout" level="project" />
+    <orderEntry type="library" exported="" name="github.oshi.core" level="application" />
+    <orderEntry type="library" exported="" name="slf4j.api" level="application" />
+    <orderEntry type="library" exported="" name="slf4j.jdk14" level="application" />
   </component>
 </module>
