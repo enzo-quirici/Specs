@@ -1,4 +1,4 @@
-# Installation guide for the 1.5 Version :
+# Installation guide for the 1.6 Version :
 ## Debian / Fedora Based Distro (GUI) :
 - Download the file for you distro in the release page of the project :  
   https://github.com/enzo-quirici/Specs/releases/  
@@ -13,15 +13,15 @@ cd ~/Downloads
 ```
 - Copy the installer file :
 ``` Bash
-curl https://github.com/enzo-quirici/Specs/releases/download/V1.5/Specs-1.5-Arch-Linux.zip
+curl https://github.com/enzo-quirici/Specs/releases/download/V1.6/Specs-1.6-Arch-Linux.zip
 ```
 - Decompress the archive :
 ``` Bash
-bsdtar -xf Specs-1.5-Arch-Linux.zip
+bsdtar -xf Specs-1.6-Arch-Linux.zip
 ```
 - Go to the extracted file :
 ``` Bash
-cd Specs-Arch-Linux
+cd Specs
 ```
 - Install the app :
 ``` Bash
@@ -34,21 +34,21 @@ cd ~/Downloads
 ```
 - Copy the installer file :
 ``` Bash
-curl https://github.com/enzo-quirici/Specs/releases/download/V1.5/Specs-1.5-Gentoo-Linux.zip
+curl https://github.com/enzo-quirici/Specs/releases/download/V1.6/Specs-1.6-Gentoo-Linux.zip
 ```
 - Decompress the archive :
 ``` Bash
-bsdtar -xf Specs-1.5-Gentoo-Linux.zip
+bsdtar -xf Specs.zip
 ```
 - Go to the extracted file :
 ``` Bash
-cd Specs-Gentoo-Linux
+cd Specs
 ```
 - Add permission to the app :
 ``` Bash
-sudo chmod +x Specs-Gentoo-Installer.sh
+sudo chmod +x Install.sh
 ```
 - Install the app :
 ``` Bash
-sudo ./Specs-Gentoo-Linux-Installer.sh
+sudo ./Install.sh
 ```
