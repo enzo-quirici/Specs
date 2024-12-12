@@ -34,10 +34,4 @@ public class MacCpuInfo {
         // Get the number of logical cores
         return processor.getLogicalProcessorCount();
     }
-
-    public static void main(String[] args) {
-        System.out.println("CPU Name: " + getCpuName());
-        System.out.println("Physical Cores: " + getMacPhysicalCores());
-        System.out.println("Logical Cores: " + getLogicalCores());
-    }
 }

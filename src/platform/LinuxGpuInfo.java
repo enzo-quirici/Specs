@@ -162,11 +162,4 @@ public class LinuxGpuInfo {
     private static String removeUnwantedParenthesesContent(String name) {
         return name.replaceAll("\\s*\\(.*?\\)", "");
     }
-
-    public static void main(String[] args) {
-        String gpuName = getGpuName();
-        long vram = getGpuVram();
-        System.out.println("GPU Name: " + gpuName);
-        System.out.println("GPU VRAM: " + vram + " MB");
-    }
 }

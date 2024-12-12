@@ -55,9 +55,4 @@ public class MacRamInfo {
                 "RAM (Used) : " + usedPhysicalMemory + " MB\n" +
                 "RAM (Free) : " + freePhysicalMemory + " MB";
     }
-
-    public static void main(String[] args) {
-        // Print the RAM information to the console
-        System.out.println(getRamInfo());
-    }
 }
