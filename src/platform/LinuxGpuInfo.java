@@ -35,10 +35,9 @@ public class LinuxGpuInfo {
 
             if (!graphicsCards.isEmpty()) {
                 GraphicsCard gpu = graphicsCards.get(0);
-                return removeUnwantedParenthesesContent(gpu.getName());  // Retirer le contenu indésirable entre parenthèses
+                return removeUnwantedParenthesesContent(gpu.getName());
             }
         } catch (Exception e) {
-            // Si l'accès à OSHI échoue, renvoyer "Unknown GPU"
         }
         return "Unknown GPU";
     }
@@ -57,7 +56,6 @@ public class LinuxGpuInfo {
                 }
             }
         } catch (Exception e) {
-            // Si glxinfo échoue, passer à lspci
         }
         return "Unknown GPU";
     }
@@ -76,16 +74,15 @@ public class LinuxGpuInfo {
                 }
             }
         } catch (Exception e) {
-            // Si lspci échoue, renvoyer "Unknown GPU"
         }
         return "Unknown GPU";
     }
 
     // Méthode pour obtenir la VRAM du GPU avec OSHI
     public static long getGpuVram() {
-        long vram = getVramFromOshi();  // D'abord essayer avec OSHI
+        long vram = getVramFromOshi();
 
-        if (vram == 0) {  // Si OSHI échoue, utiliser glxinfo et lspci
+        if (vram == 0) {  //
             vram = getVramFromGlxInfo();
             if (vram == 0) {
                 vram = getVramFromLspci();
