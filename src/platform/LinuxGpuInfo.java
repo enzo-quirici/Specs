@@ -12,7 +12,6 @@ import java.util.List;
 
 public class LinuxGpuInfo {
 
-    // Méthode pour obtenir le nom du GPU avec OSHI
     public static String getGpuName() {
         String gpuName = getGpuNameFromOshi();
 
@@ -26,7 +25,6 @@ public class LinuxGpuInfo {
         return gpuName;
     }
 
-    // Méthode pour obtenir le nom du GPU avec OSHI
     private static String getGpuNameFromOshi() {
         try {
             SystemInfo systemInfo = new SystemInfo();
@@ -42,7 +40,6 @@ public class LinuxGpuInfo {
         return "Unknown GPU";
     }
 
-    // Méthode pour obtenir le nom du GPU avec glxinfo
     private static String getGpuNameFromGlxInfo() {
         try {
             ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", "glxinfo | grep 'Device:'");
@@ -60,7 +57,6 @@ public class LinuxGpuInfo {
         return "Unknown GPU";
     }
 
-    // Méthode pour obtenir le nom du GPU avec lspci
     private static String getGpuNameFromLspci() {
         try {
             ProcessBuilder processBuilder = new ProcessBuilder("lspci");
@@ -78,7 +74,6 @@ public class LinuxGpuInfo {
         return "Unknown GPU";
     }
 
-    // Méthode pour obtenir la VRAM du GPU avec OSHI
     public static long getGpuVram() {
         long vram = getVramFromOshi();
 
@@ -92,7 +87,6 @@ public class LinuxGpuInfo {
         return vram;
     }
 
-    // Méthode pour obtenir la VRAM du GPU avec OSHI
     private static long getVramFromOshi() {
         try {
             SystemInfo systemInfo = new SystemInfo();
@@ -108,7 +102,6 @@ public class LinuxGpuInfo {
         return 0;
     }
 
-    // Méthode pour obtenir la VRAM du GPU avec glxinfo
     private static long getVramFromGlxInfo() {
         try {
             ProcessBuilder processBuilder = new ProcessBuilder("glxinfo");
@@ -124,7 +117,6 @@ public class LinuxGpuInfo {
                 }
             }
         } catch (Exception e) {
-            // La commande a échoué ou est indisponible
         }
         return 0;
     }
