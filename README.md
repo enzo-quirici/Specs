@@ -67,7 +67,7 @@ sudo apt install ./libjpeg-turbo8_2.1.2-0ubuntu1_amd64.deb
 
 ## glxinfo :  
 
-- GLXINFO has been replaced with OSHI GLXINFO is now optional.  
+- GLXINFO has been replaced by OSHI GLXINFO is now optional.  
 
 - To enable GPU and VRAM information retrieval on Linux, this program requires `glxinfo`. Below are the instructions for installing `glxinfo` on Debian, Ubuntu, Fedora, Arch Linux, and Gentoo.  
 
