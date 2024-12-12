@@ -26,6 +26,6 @@ public class WindowsGpuInfo {
             vram = Math.max(vram, gpu.getVRam());
         }
 
-        return vram / (1024 * 1024);
+        return (long) Math.ceil(vram / (1024.0 * 1024.0));
     }
 }

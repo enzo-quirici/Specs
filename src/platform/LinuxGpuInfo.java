@@ -1,17 +1,49 @@
-// platform/LinuxGpuInfo.java
-
 package platform;
+
+import oshi.SystemInfo;
+import oshi.hardware.GraphicsCard;
+import oshi.hardware.HardwareAbstractionLayer;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.List;
 
 public class LinuxGpuInfo {
 
-    // Méthode pour obtenir le nom du GPU
+    // Méthode pour obtenir le nom du GPU avec OSHI
     public static String getGpuName() {
-        String gpuName = "Unknown GPU";
+        String gpuName = getGpuNameFromOshi();  // D'abord essayer avec OSHI
+
+        if (gpuName.equals("Unknown GPU")) {  // Si OSHI échoue, utiliser glxinfo et lspci
+            gpuName = getGpuNameFromGlxInfo();
+            if (gpuName.equals("Unknown GPU")) {
+                gpuName = getGpuNameFromLspci();
+            }
+        }
+
+        return gpuName;
+    }
+
+    // Méthode pour obtenir le nom du GPU avec OSHI
+    private static String getGpuNameFromOshi() {
         try {
-            // Essayer d'abord de récupérer le nom du GPU avec glxinfo
+            SystemInfo systemInfo = new SystemInfo();
+            HardwareAbstractionLayer hal = systemInfo.getHardware();
+            List<GraphicsCard> graphicsCards = hal.getGraphicsCards();
+
+            if (!graphicsCards.isEmpty()) {
+                GraphicsCard gpu = graphicsCards.get(0);
+                return removeUnwantedParenthesesContent(gpu.getName());  // Retirer le contenu indésirable entre parenthèses
+            }
+        } catch (Exception e) {
+            // Si l'accès à OSHI échoue, renvoyer "Unknown GPU"
+        }
+        return "Unknown GPU";
+    }
+
+    // Méthode pour obtenir le nom du GPU avec glxinfo
+    private static String getGpuNameFromGlxInfo() {
+        try {
             ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", "glxinfo | grep 'Device:'");
             Process process = processBuilder.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -19,61 +51,66 @@ public class LinuxGpuInfo {
 
             while ((line = reader.readLine()) != null) {
                 if (line.toLowerCase().contains("device")) {
-                    gpuName = line.split(":")[1].trim(); // Extraction du nom du GPU
-                    gpuName = removeUnwantedParenthesesContent(gpuName); // Supprimer le contenu indésirable
-                    break;
+                    return removeUnwantedParenthesesContent(line.split(":")[1].trim());
                 }
             }
-
-            process.waitFor();
         } catch (Exception e) {
-            // Si glxinfo échoue, nous n'avons pas besoin de changer gpuName
+            // Si glxinfo échoue, passer à lspci
         }
+        return "Unknown GPU";
+    }
 
-        // Si glxinfo échoue, essayer lspci
-        if (gpuName.equals("Unknown GPU")) { // Si on n'a pas encore trouvé le nom
-            try {
-                ProcessBuilder processBuilder = new ProcessBuilder("lspci");
-                Process process = processBuilder.start();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                String line;
+    // Méthode pour obtenir le nom du GPU avec lspci
+    private static String getGpuNameFromLspci() {
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder("lspci");
+            Process process = processBuilder.start();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
 
-                while ((line = reader.readLine()) != null) {
-                    if (line.toLowerCase().contains("vga")) {
-                        gpuName = line.split(":")[2].trim(); // Extraction du nom du GPU
-                        gpuName = removeUnwantedParenthesesContent(gpuName); // Supprimer le contenu indésirable
-                        break;
-                    }
+            while ((line = reader.readLine()) != null) {
+                if (line.toLowerCase().contains("vga")) {
+                    return removeUnwantedParenthesesContent(line.split(":")[2].trim());
                 }
+            }
+        } catch (Exception e) {
+            // Si lspci échoue, renvoyer "Unknown GPU"
+        }
+        return "Unknown GPU";
+    }
 
-                process.waitFor();
-            } catch (Exception e) {
-                gpuName = "Error retrieving GPU name"; // Gestion de l'erreur
+    // Méthode pour obtenir la VRAM du GPU avec OSHI
+    public static long getGpuVram() {
+        long vram = getVramFromOshi();  // D'abord essayer avec OSHI
+
+        if (vram == 0) {  // Si OSHI échoue, utiliser glxinfo et lspci
+            vram = getVramFromGlxInfo();
+            if (vram == 0) {
+                vram = getVramFromLspci();
             }
         }
 
-        return gpuName;
+        return vram;
     }
 
-    // Méthode pour supprimer le contenu entre parenthèses sauf pour (R), (r), (TM), (tm), (C) ou (c)
-    private static String removeUnwantedParenthesesContent(String name) {
-        // Supprimer le contenu entre parenthèses sauf pour (R), (r), (TM), (tm), (C), (c) et d'autres mentions
-        return name.replaceAll("\\s*\\((?![Rr]|TM|tm|C|c).*?\\)", ""); // Supprime les parenthèses sauf les mentions spécifiques
+    // Méthode pour obtenir la VRAM du GPU avec OSHI
+    private static long getVramFromOshi() {
+        try {
+            SystemInfo systemInfo = new SystemInfo();
+            HardwareAbstractionLayer hal = systemInfo.getHardware();
+            List<GraphicsCard> graphicsCards = hal.getGraphicsCards();
+
+            if (!graphicsCards.isEmpty()) {
+                GraphicsCard gpu = graphicsCards.get(0);
+                return gpu.getVRam() / (1024 * 1024); // Convertir en Mo
+            }
+        } catch (Exception e) {
+            // Si l'accès à OSHI échoue, retourner 0
+        }
+        return 0;
     }
 
-    // Méthode pour obtenir la VRAM du GPU
-    public static long getGpuVram() {
-        long vram = 0;
-
-        // Essayer d'abord d'obtenir la VRAM depuis glxinfo
-        vram = getVramFromGlxInfo();
-        if (vram > 0) return vram; // Retourner si la VRAM a été trouvée
-
-        // Si non trouvée, essayer lspci
-        vram = getVramFromLspci();
-        return vram; // Retourne 0 si non trouvée
-    }
-
+    // Méthode pour obtenir la VRAM du GPU avec glxinfo
     private static long getVramFromGlxInfo() {
         try {
             ProcessBuilder processBuilder = new ProcessBuilder("glxinfo");
@@ -117,9 +154,13 @@ public class LinuxGpuInfo {
                 }
             }
         } catch (Exception e) {
-            // La commande a échoué ou est indisponible
+            // Si lspci échoue, retourner 0
         }
         return 0;
+    }
+
+    private static String removeUnwantedParenthesesContent(String name) {
+        return name.replaceAll("\\s*\\(.*?\\)", "");
     }
 
     public static void main(String[] args) {

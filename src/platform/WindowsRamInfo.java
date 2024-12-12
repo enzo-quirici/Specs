@@ -8,9 +8,15 @@ import java.lang.management.ManagementFactory;
 public class WindowsRamInfo {
     public static String getRamInfo() {
         OperatingSystemMXBean osMXBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-        long totalPhysicalMemory = osMXBean.getTotalMemorySize() / (1024 * 1024); // Total memory in MB
-        long freePhysicalMemory = osMXBean.getFreeMemorySize() / (1024 * 1024); // Free memory in MB
-        long usedPhysicalMemory = totalPhysicalMemory - freePhysicalMemory; // Used memory in MB
+
+        // Total physical memory in MB
+        long totalPhysicalMemory = (long) Math.ceil(osMXBean.getTotalMemorySize() / (1024.0 * 1024.0));
+
+        // Free physical memory in MB
+        long freePhysicalMemory = (long) Math.ceil(osMXBean.getFreeMemorySize() / (1024.0 * 1024.0));
+
+        // Used physical memory in MB
+        long usedPhysicalMemory = totalPhysicalMemory - freePhysicalMemory;
 
         return "RAM (Total) : " + totalPhysicalMemory + " MB\n" +
                 "RAM (Used) : " + usedPhysicalMemory + " MB\n" +
