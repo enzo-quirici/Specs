@@ -14,11 +14,11 @@
 
 # Minimum Requirements :
 
-🖥️ OS : Windows 7 or better (Windows 10 is recommended) / Linux 5.15 or better / Mac OS 10.11 or better  
-⚙️ CPU : 1 Core 1 GHZ 64 bits CPU  
+🖥️ OS : Windows 7 or better / Linux 4.4 or better / Mac OS 10.11 or better  
+⚙️ CPU : 64 bits CPU  
 💾 RAM : 512 MO of RAM  
 💿 Storage : 512 Mo of free space  
-☕ Java : JDK 21 or better (.jar)  
+☕ Java : JDK 17 or better (.jar)  
 
 # Project Status :
 
@@ -45,13 +45,6 @@
 - This feature requires a server to be used.  
 - currently there is no official server available, but you can create one by using the guide [how to create you own Specs Server](https://github.com/enzo-quirici/Specs-Server/).
 
-# Windows 11
-
-- CPU and GPU detection, are not working anymore because WMIC is no longer supported starting from Windows 11.
-- While it is possible to reactivate WMIC on Windows 11 by following the steps provided in this guide :  
-[How to install WMIC on Demand on Windows 11 ?](https://techcommunity.microsoft.com/blog/windows-itpro-blog/how-to-install-wmic-feature-on-demand-on-windows-11/4189530)
-- this solution does not work for Windows Server 2012 and later.
-
 # dependency :
 
 ## libjpeg turbo 8 :
@@ -67,7 +60,7 @@ sudo apt install ./libjpeg-turbo8_2.1.2-0ubuntu1_amd64.deb
 
 ## glxinfo :  
 
-- GLXINFO has been replaced by OSHI GLXINFO is now optional.  
+- GLXINFO has been replaced with OSHI GLXINFO is now optional.  
 
 - To enable GPU and VRAM information retrieval on Linux, this program requires `glxinfo`. Below are the instructions for installing `glxinfo` on Debian, Ubuntu, Fedora, Arch Linux, and Gentoo.  
 
