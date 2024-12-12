@@ -67,9 +67,7 @@ sudo apt install ./libjpeg-turbo8_2.1.2-0ubuntu1_amd64.deb
 
 ## glxinfo :  
 
-<div style="background-color: #FFEB3B; padding: 10px; border-radius: 5px;">
-  ⚠️ GLXINFO has been replaced with OSHI it's now optional.  
-</div>
+- GLXINFO has been replaced with OSHI GLXINFO is now optional.  
 
 - To enable GPU and VRAM information retrieval on Linux, this program requires `glxinfo`. Below are the instructions for installing `glxinfo` on Debian, Ubuntu, Fedora, Arch Linux, and Gentoo.  
 
