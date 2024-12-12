@@ -14,9 +14,9 @@ public class LinuxGpuInfo {
 
     // Méthode pour obtenir le nom du GPU avec OSHI
     public static String getGpuName() {
-        String gpuName = getGpuNameFromOshi();  // D'abord essayer avec OSHI
+        String gpuName = getGpuNameFromOshi();
 
-        if (gpuName.equals("Unknown GPU")) {  // Si OSHI échoue, utiliser glxinfo et lspci
+        if (gpuName.equals("Unknown GPU")) {
             gpuName = getGpuNameFromGlxInfo();
             if (gpuName.equals("Unknown GPU")) {
                 gpuName = getGpuNameFromLspci();
@@ -101,10 +101,9 @@ public class LinuxGpuInfo {
 
             if (!graphicsCards.isEmpty()) {
                 GraphicsCard gpu = graphicsCards.get(0);
-                return gpu.getVRam() / (1024 * 1024); // Convertir en Mo
+                return gpu.getVRam() / (1024 * 1024);
             }
         } catch (Exception e) {
-            // Si l'accès à OSHI échoue, retourner 0
         }
         return 0;
     }
@@ -118,10 +117,10 @@ public class LinuxGpuInfo {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                if (line.toLowerCase().contains("total available memory")) { // Pour certains systèmes
-                    return Long.parseLong(line.replaceAll("[^0-9]", "").trim()); // VRAM en Mo
-                } else if (line.toLowerCase().contains("video memory")) { // Pour d'autres systèmes
-                    return Long.parseLong(line.replaceAll("[^0-9]", "").trim()); // VRAM en Mo
+                if (line.toLowerCase().contains("total available memory")) {
+                    return Long.parseLong(line.replaceAll("[^0-9]", "").trim());
+                } else if (line.toLowerCase().contains("video memory")) {
+                    return Long.parseLong(line.replaceAll("[^0-9]", "").trim());
                 }
             }
         } catch (Exception e) {
@@ -145,15 +144,14 @@ public class LinuxGpuInfo {
                 if (foundVGA && line.toLowerCase().contains("memory at")) {
                     String[] parts = line.split(" ");
                     for (String part : parts) {
-                        if (part.matches("[0-9a-f]+K")) { // Un exemple simple
-                            return Long.parseLong(part.replace("K", "").trim()) / 1024; // Convertir en Mo
+                        if (part.matches("[0-9a-f]+K")) {
+                            return Long.parseLong(part.replace("K", "").trim()) / 1024;
                         }
                     }
                     break;
                 }
             }
         } catch (Exception e) {
-            // Si lspci échoue, retourner 0
         }
         return 0;
     }
