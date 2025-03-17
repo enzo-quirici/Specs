@@ -37,7 +37,7 @@ public class Upload {
         String cores = parseCpuCores(cpuInfo);
         String threads = parseCpuThreads(cpuInfo);
         String gpu = parseGpuName(gpuInfo);
-        String vram = getVram(); // Use the new getVram method
+        String vram = getVram();
         String ram = parseRamTotal(ramInfo);
 
         // 4. Create a JSON object with the cleaned system information
