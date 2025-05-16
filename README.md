@@ -18,7 +18,7 @@
 ⚙️ CPU : 64 bits CPU  
 💾 RAM : 512 MO of RAM  
 💿 Storage : 512 Mo of free space  
-☕ Java : JDK 17 or better (.jar)  
+☕ Java : JDK 17 or better
 
 # Project Status :
 
