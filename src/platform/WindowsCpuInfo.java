@@ -13,7 +13,6 @@ public class WindowsCpuInfo {
         HardwareAbstractionLayer hal = systemInfo.getHardware();
         CentralProcessor processor = hal.getProcessor();
 
-        // Get the CPU name from the processor
         return processor.getProcessorIdentifier().getName();
     }
 
@@ -22,7 +21,6 @@ public class WindowsCpuInfo {
         HardwareAbstractionLayer hal = systemInfo.getHardware();
         CentralProcessor processor = hal.getProcessor();
 
-        // Get the number of physical cores
         return processor.getPhysicalProcessorCount();
     }
 
@@ -31,7 +29,6 @@ public class WindowsCpuInfo {
         HardwareAbstractionLayer hal = systemInfo.getHardware();
         CentralProcessor processor = hal.getProcessor();
 
-        // Get the number of logical cores
         return processor.getLogicalProcessorCount();
     }
 }

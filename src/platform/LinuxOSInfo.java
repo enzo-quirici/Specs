@@ -6,10 +6,9 @@ import java.io.InputStreamReader;
 
 public class LinuxOSInfo {
     public static String getLinuxOSVersion() {
-        String osVersion = "Unknown Linux"; // Default value
-        String osName = System.getProperty("os.name").toLowerCase(); // Get the OS name
+        String osVersion = "Unknown Linux";
+        String osName = System.getProperty("os.name").toLowerCase();
 
-        // If the OS is Linux, try to retrieve the name and version via /etc/os-release
         if (osName.equals("linux")) {
             try {
                 ProcessBuilder processBuilder = new ProcessBuilder("bash", "-c", "grep -E '^(VERSION|NAME)=' /etc/os-release");
@@ -25,26 +24,24 @@ public class LinuxOSInfo {
                     } else if (line.startsWith("VERSION=")) {
                         // Extract version and remove any content in parentheses
                         version = line.replace("VERSION=", "").replace("\"", "").trim();
-                        version = version.split("\\s*\\(")[0].trim(); // Remove content in parentheses
+                        version = version.split("\\s*\\(")[0].trim();
                     }
                 }
 
-                // Combine NAME and VERSION into a single string for osVersion
                 if (name != null && version != null) {
-                    osVersion = name + " " + version; // Combine name and version
+                    osVersion = name + " " + version;
                 }
 
             } catch (IOException e) {
                 e.printStackTrace();
-                osVersion = "Error retrieving Linux OS information."; // Fallback error message
+                osVersion = "Error retrieving Linux OS information.";
             }
         }
 
-        // If osVersion is still the default value, use the default Java method to get the OS version
         if (osVersion.equals("Unknown Linux")) {
             osVersion = System.getProperty("os.version");
         }
 
-        return osVersion; // Return the determined OS version
+        return osVersion;
     }
 }

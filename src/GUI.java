@@ -11,7 +11,7 @@ public class GUI {
     static ImageIcon osIcon;
     static ImageIcon cpuIcon;
     static ImageIcon ramIcon;
-    static ImageIcon gpuIcon; // Global icons
+    static ImageIcon gpuIcon;
 
     public static void main(String[] args) {
 
@@ -24,7 +24,7 @@ public class GUI {
         icon = new ImageIcon(Objects.requireNonNull(GUI.class.getResource("/icon/Icon 128x128.png")));
 
         // Create the main window
-        jframe = new JFrame("Java Specs");
+        jframe = new JFrame("Specs");
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.setSize(1200, 600);
         jframe.setLocationRelativeTo(null); // Center the window on the screen
@@ -80,13 +80,13 @@ public class GUI {
         menuBar.add(helpMenu);
 
         // Create the main panel with GridLayout in 2x2
-        mainPanel = new JPanel(new GridLayout(2, 2, 10, 10)); // 2 rows and 2 columns for OS, CPU, GPU, and RAM
+        mainPanel = new JPanel(new GridLayout(2, 2, 10, 10));
 
         // Create and add the panels for each category
-        JPanel osPanel = InfoPanel.createInfoPanel("Operating System", Specs.getOperatingSystem(), osIcon);
-        JPanel cpuPanel = InfoPanel.createInfoPanel("CPU", Specs.getCpuInfo(), cpuIcon);
-        JPanel gpuPanel = InfoPanel.createInfoPanel("GPU", Specs.getGpuInfo(), gpuIcon);
-        JPanel ramPanel = InfoPanel.createInfoPanel("RAM", Specs.getRamInfo(), ramIcon);
+        JPanel osPanel = InfoPanel.createInfoPanel("Operating System", "Operating System :" + " " + Specs.getOperatingSystemName() + "\n" + "Version" + " " + Specs.getOperatingSystemVersion(), osIcon);
+        JPanel cpuPanel = InfoPanel.createInfoPanel("CPU", "CPU :" + " " + Specs.getCpuName() + "\n" + "Cores :" + " " + Specs.getCpuCores() + "\n" + "Threads :" + " " + Specs.getCpuThreads(), cpuIcon);
+        JPanel gpuPanel = InfoPanel.createInfoPanel("GPU", "GPU :" + " " + Specs.getGpuName() + "\n" + "Vram :" + " " + Specs.getGpuVram() + " " + "MB", gpuIcon);
+        JPanel ramPanel = InfoPanel.createInfoPanel("RAM", "RAM (Total) :" + " " + Specs.getRamSize() + " " + "MB" + "\n" + "RAM (Used) :" + " " + Specs.getRamUsed() + " " + "MB" + "\n" + "RAM (Free) :" + " " + Specs.getRamFree() + " " + "MB", ramIcon);
 
         mainPanel.add(osPanel);
         mainPanel.add(cpuPanel);
@@ -107,10 +107,10 @@ public class GUI {
     // Method to refresh system specifications
     private static void refreshSpecs() {
         // Reuse the already loaded icons
-        updateTextArea((JPanel) mainPanel.getComponent(0), Specs.getOperatingSystem(), osIcon);
-        updateTextArea((JPanel) mainPanel.getComponent(1), Specs.getCpuInfo(), cpuIcon);
-        updateTextArea((JPanel) mainPanel.getComponent(2), Specs.getGpuInfo(), gpuIcon);
-        updateTextArea((JPanel) mainPanel.getComponent(3), Specs.getRamInfo(), ramIcon);
+        updateTextArea((JPanel) mainPanel.getComponent(0), "Operating System :" + " " + Specs.getOperatingSystemName() + "\n" + "Version" + " " + Specs.getOperatingSystemVersion(), osIcon);
+        updateTextArea((JPanel) mainPanel.getComponent(1), "CPU :" + " " + Specs.getCpuName() + "\n" + "Cores :" + " " + Specs.getCpuCores() + "\n" + "Threads :" + " " + Specs.getCpuThreads(), cpuIcon);
+        updateTextArea((JPanel) mainPanel.getComponent(2), "GPU :" + " " + Specs.getGpuName() + "\n" + "Vram :" + " " + Specs.getGpuVram() + " " + "MB", gpuIcon);
+        updateTextArea((JPanel) mainPanel.getComponent(3), "RAM (Total) :" + " " + Specs.getRamSize() + " " + "MB" + "\n" + "RAM (Used) :" + " " + Specs.getRamUsed() + " " + "MB" + "\n" + "RAM (Free) :" + " " + Specs.getRamFree() + " " + "MB", ramIcon);
     }
 
     // Method to load icons once
@@ -119,13 +119,13 @@ public class GUI {
             osIcon = InfoPanel.getOsIcon();
         }
         if (cpuIcon == null) {
-            cpuIcon = InfoPanel.getCpuIcon(Specs.getCpuInfo());
+            cpuIcon = InfoPanel.getCpuIcon(Specs.getCpuName());
         }
         if (ramIcon == null) {
             ramIcon = InfoPanel.getRamIcon();
         }
         if (gpuIcon == null) {
-            gpuIcon = InfoPanel.getGpuIcon(Specs.getGpuInfo());
+            gpuIcon = InfoPanel.getGpuIcon(Specs.getGpuName());
         }
     }
 

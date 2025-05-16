@@ -1,33 +1,36 @@
+//Specs.java
+
 import java.io.IOException;
 import java.util.Locale;
 import platform.*;
 
 public class Specs {
 
-    // Method to get the operating system information
-    public static String getOperatingSystem() {
+    public static String getOperatingSystemName() {
+        String osName = System.getProperty("os.name");
+
+        osName = osName.replace("-", " ");
+
+        return osName;
+    }
+
+    public static String getOperatingSystemVersion() {
         String osName = System.getProperty("os.name");
         String osVersion = System.getProperty("os.version");
 
-        // If the OS is Linux, try to retrieve the name and version via /etc/os-release
         if (osName.toLowerCase().equals("linux")) {
             osVersion = LinuxOSInfo.getLinuxOSVersion();
         }
 
-        // Replace dashes with spaces in both osName and osVersion
-        osName = osName.replace("-", " ");
         osVersion = osVersion.replace("-", " ");
 
-        // Return the OS information (name and version)
-        return "Operating System : " + osName + "\nVersion : " + osVersion;
+        return osVersion;
     }
 
-    // Method to get CPU information
-    public static String getCpuInfo() {
+    public static String getCpuName() {
         String cpuName = "";
         String osName = System.getProperty("os.name").toLowerCase();
 
-        // Determine the CPU name based on the OS
         if (osName.contains("mac")) {
             cpuName = MacCpuInfo.getCpuName();
         } else if (osName.contains("linux")) {
@@ -38,74 +41,114 @@ public class Specs {
             cpuName = "Unknown CPU";
         }
 
-        // Remove parentheses (and their content) from the CPU name
         cpuName = cpuName.replaceAll("\\(.*?\\)", "").trim();
 
-        // Get the number of physical cores based on the OS
-        int physicalCores = getPhysicalCores();
-        int logicalCores = Runtime.getRuntime().availableProcessors(); // Logical cores (threads)
-
-        return "CPU : " + cpuName + "\nPhysical Cores : " + physicalCores + "\nLogical Cores : " + logicalCores;
+        return cpuName;
     }
 
-    // Method to get the number of physical cores based on the OS
-    public static int getPhysicalCores() {
+    public static int getCpuCores() {
         String osName = System.getProperty("os.name").toLowerCase(Locale.ROOT);
         try {
             if (osName.contains("win")) {
                 return WindowsCpuInfo.getWindowsPhysicalCores();
             } else if (osName.contains("mac")) {
-                return MacCpuInfo.getMacPhysicalCores(); // Utilisation de MacCpuInfo pour macOS
+                return MacCpuInfo.getMacPhysicalCores();
             } else if (osName.contains("linux")) {
                 return LinuxCpuInfo.getLinuxPhysicalCores();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return Runtime.getRuntime().availableProcessors(); // Fallback to logical processors if an error occurs
+        return Runtime.getRuntime().availableProcessors();
     }
 
-    // Method to get GPU information
-    public static String getGpuInfo() {
+    public static int getCpuThreads() {
+        return Runtime.getRuntime().availableProcessors();
+    }
+
+
+    public static String getGpuName() {
         String gpuName = "";
         long gpuVram = 0;
         String osName = System.getProperty("os.name").toLowerCase();
 
-        // Determine the GPU name and VRAM based on the OS
         if (osName.contains("mac")) {
             gpuName = MacGpuInfo.getGpuName();
-            gpuVram = MacGpuInfo.getGpuVram();
         } else if (osName.contains("linux")) {
             gpuName = LinuxGpuInfo.getGpuName();
-            gpuVram = LinuxGpuInfo.getGpuVram();
         } else if (osName.contains("win")) {
             gpuName = WindowsGpuInfo.getGpuName();
-            gpuVram = WindowsGpuInfo.getGpuVram();
         } else {
             gpuName = "Unknown GPU";
         }
 
-        // Remove parentheses (and their content) from the GPU name, except on Linux
         if (!osName.contains("linux")) {
             gpuName = gpuName.replaceAll("\\(.*?\\)", "").trim();
         }
 
-        return "GPU : " + gpuName + "\nVRAM : " + gpuVram + " MB"; // Return GPU information
+        return gpuName;
     }
 
+    public static String getGpuVram() {
+        String gpuName = "";
+        long gpuVram = 0;
+        String osName = System.getProperty("os.name").toLowerCase();
 
-    // Method to get RAM information (delegated to OS-specific classes)
-    public static String getRamInfo() {
+        if (osName.contains("mac")) {
+            gpuVram = MacGpuInfo.getGpuVram();
+        } else if (osName.contains("linux")) {
+            gpuVram = LinuxGpuInfo.getGpuVram();
+        } else if (osName.contains("win")) {
+            gpuVram = WindowsGpuInfo.getGpuVram();
+        } else {
+            gpuVram = Long.parseLong("Unknown Vram");
+        }
+
+        return String.valueOf(gpuVram);
+    }
+
+    // Method to get total RAM size based on the OS
+    public static long getRamSize() {
         String osName = System.getProperty("os.name").toLowerCase();
 
         if (osName.contains("linux")) {
-            return LinuxRamInfo.getRamInfo();
+            return LinuxRamInfo.getRamSize();
         } else if (osName.contains("mac")) {
-            return MacRamInfo.getRamInfo();
+            return MacRamInfo.getRamSize();
         } else if (osName.contains("win")) {
-            return WindowsRamInfo.getRamInfo();
+            return WindowsRamInfo.getRamSize();
         } else {
-            return "OS not supported for RAM info retrieval.";
+            return -1;
+        }
+    }
+
+    // Method to get used RAM size based on the OS
+    public static long getRamUsed() {
+        String osName = System.getProperty("os.name").toLowerCase();
+
+        if (osName.contains("linux")) {
+            return LinuxRamInfo.getRamUsed();
+        } else if (osName.contains("mac")) {
+            return MacRamInfo.getRamUsed();
+        } else if (osName.contains("win")) {
+            return WindowsRamInfo.getRamUsed();
+        } else {
+            return -1;
+        }
+    }
+
+    // Method to get free RAM size based on the OS
+    public static long getRamFree() {
+        String osName = System.getProperty("os.name").toLowerCase();
+
+        if (osName.contains("linux")) {
+            return LinuxRamInfo.getRamFree();
+        } else if (osName.contains("mac")) {
+            return MacRamInfo.getRamFree();
+        } else if (osName.contains("win")) {
+            return WindowsRamInfo.getRamFree();
+        } else {
+            return -1;
         }
     }
 }
