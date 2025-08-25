@@ -155,6 +155,8 @@ public class InfoPanel {
                 iconPath = "/icon/Virtual Machine 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("vm")) {
             iconPath = "/icon/Virtual Machine 128x128.png";
+        } else if (gpuInfo.toLowerCase().contains("hd")) {
+            iconPath = "/icon/Intel GPU 128x128.png";
         } else {
             iconPath = "/icon/Unknown GPU 128x128.png";
         }

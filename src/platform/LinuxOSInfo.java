@@ -22,13 +22,24 @@ public class LinuxOSInfo {
                     if (line.startsWith("NAME=")) {
                         name = line.replace("NAME=", "").replace("\"", "").trim();
                     } else if (line.startsWith("VERSION=")) {
-                        // Extract version and remove any content in parentheses
                         version = line.replace("VERSION=", "").replace("\"", "").trim();
-                        version = version.split("\\s*\\(")[0].trim();
                     }
                 }
 
-                if (name != null && version != null) {
+                if ((version != null && version.toLowerCase().contains("arch")) ||
+                        (name != null && name.toLowerCase().contains("arch"))) {
+                    // Get kernel version and strip suffix like -arch1-1
+                    Process unameProc = new ProcessBuilder("uname", "-r").start();
+                    BufferedReader unameReader = new BufferedReader(new InputStreamReader(unameProc.getInputStream()));
+                    String kernelVersion = unameReader.readLine().trim();
+
+                    // Remove everything from first dash onward
+                    String cleanedKernelVersion = kernelVersion.split("-")[0];
+
+                    osVersion = cleanedKernelVersion + " " + "Arch Linux";
+                } else if (name != null && version != null) {
+                    // Remove parentheses content from version
+                    version = version.split("\\s*\\(")[0].trim();
                     osVersion = name + " " + version;
                 }
 
