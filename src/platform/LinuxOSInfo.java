@@ -26,20 +26,27 @@ public class LinuxOSInfo {
                     }
                 }
 
+                // Cas Arch Linux
                 if ((version != null && version.toLowerCase().contains("arch")) ||
                         (name != null && name.toLowerCase().contains("arch"))) {
-                    // Get kernel version and strip suffix like -arch1-1
                     Process unameProc = new ProcessBuilder("uname", "-r").start();
                     BufferedReader unameReader = new BufferedReader(new InputStreamReader(unameProc.getInputStream()));
                     String kernelVersion = unameReader.readLine().trim();
-
-                    // Remove everything from first dash onward
                     String cleanedKernelVersion = kernelVersion.split("-")[0];
-
-                    osVersion = cleanedKernelVersion + " " + "Arch Linux";
-                } else if (name != null && version != null) {
-                    // Remove parentheses content from version
-                    version = version.split("\\s*\\(")[0].trim();
+                    osVersion = cleanedKernelVersion + " Arch Linux";
+                }
+                // Cas Gentoo Linux
+                else if ((version != null && version.toLowerCase().contains("gentoo")) ||
+                        (name != null && name.toLowerCase().contains("gentoo"))) {
+                    Process unameProc = new ProcessBuilder("uname", "-r").start();
+                    BufferedReader unameReader = new BufferedReader(new InputStreamReader(unameProc.getInputStream()));
+                    String kernelVersion = unameReader.readLine().trim();
+                    String cleanedKernelVersion = kernelVersion.split("-")[0];
+                    osVersion = cleanedKernelVersion + " Gentoo Linux";
+                }
+                // Cas général
+                else if (name != null && version != null) {
+                    version = version.split("\\s*\\(")[0].trim(); // enlever le contenu entre parenthèses
                     osVersion = name + " " + version;
                 }
 
