@@ -38,7 +38,7 @@ curl https://github.com/enzo-quirici/Specs/releases/download/V2.0/Specs-2.0-Gent
 ```
 - Decompress the archive :
 ``` Bash
-bsdtar -xf Specs.zip
+bsdtar -xf Specs-2.0-Gentoo-Linux.zip
 ```
 - Go to the extracted file :
 ``` Bash
