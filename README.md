@@ -20,6 +20,24 @@
 💿 Storage : 512 Mo of free space  
 ☕ Java : JDK 17 or better
 
+# Project Status :
+
+### Legend :
+- ✅ Yes
+- ❌ No
+- ⚠️ Partial or Special Case
+- 🟧 Not Available/Unknown
+
+| OS           | Launch    | Installer | Standalone Version   | Icon | Stress Test | OS | CPU  | RAM  | VRAM  |
+|--------------|-----------|-----------|----------------------|------|-------------|----|------|------|-------|
+| Windows      | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Arch Linux   | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Ubuntu       | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Debian       | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Fedora       | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Gentoo Linux | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Mac OS       | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+
 # Validation :
 
 - the validation feature is a feature that allows you to display information from multiple PCs to create statistics.
