@@ -1,4 +1,4 @@
-# Installation guide for the 1.6 Version :
+# Installation guide for the 2.0 Version :
 ## Debian / Fedora Based Distro (GUI) :
 - Download the file for you distro in the release page of the project :  
   https://github.com/enzo-quirici/Specs/releases/  
@@ -13,11 +13,11 @@ cd ~/Downloads
 ```
 - Copy the installer file :
 ``` Bash
-curl https://github.com/enzo-quirici/Specs/releases/download/V1.6/Specs-1.6-Arch-Linux.zip
+curl https://github.com/enzo-quirici/Specs/releases/download/V2.0/Specs-2.0-Arch-Linux.zip
 ```
 - Decompress the archive :
 ``` Bash
-bsdtar -xf Specs-1.6-Arch-Linux.zip
+bsdtar -xf Specs-2.0-Arch-Linux.zip
 ```
 - Go to the extracted file :
 ``` Bash
@@ -34,7 +34,7 @@ cd ~/Downloads
 ```
 - Copy the installer file :
 ``` Bash
-curl https://github.com/enzo-quirici/Specs/releases/download/V1.6/Specs-1.6-Gentoo-Linux.zip
+curl https://github.com/enzo-quirici/Specs/releases/download/V2.0/Specs-2.0-Gentoo-Linux.zip
 ```
 - Decompress the archive :
 ``` Bash
