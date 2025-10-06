@@ -39,6 +39,10 @@
 | Mac OS       | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
 | Free BSD     | ❌        | ❌        | ❌                  | ❌   | ❌          | ❌ | ❌  | ❌   | ❌    |
 
+# Future Of The Project :
+- Fix Vram detection on Windows.
+- Add support for BSD based OS.
+
 # Validation :
 
 - the validation feature is a feature that allows you to display information from multiple PCs to create statistics.
