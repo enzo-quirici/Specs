@@ -2,6 +2,7 @@
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.regex.Pattern;
 import platform.*;
 
 public class Specs {
@@ -41,7 +42,18 @@ public class Specs {
             cpuName = "Unknown CPU";
         }
 
-        cpuName = cpuName.replaceAll("\\(.*?\\)", "").trim();
+        cpuName = cpuName
+                // enlève les parenthèses
+                .replaceAll("\\(.*?\\)", "")
+                // remplace les tirets par un espace
+                .replace("-", " ")
+                // enlève "@ 3.40GHz" ou "3.40 GHz"
+                .replaceAll("@?\\s*\\d+(\\.\\d+)?\\s*ghz", "")
+                // enlève "12th Gen", "13th gen" etc.
+                .replaceAll("(?i)\\b\\d{1,2}(st|nd|rd|th)\\s+gen\\b", "")
+                // réduit les espaces multiples
+                .replaceAll("\\s+", " ")
+                .trim();
 
         return cpuName;
     }

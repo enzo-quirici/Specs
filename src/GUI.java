@@ -85,7 +85,7 @@ public class GUI {
         // Create and add the panels for each category
         JPanel osPanel = InfoPanel.createInfoPanel("Operating System", "Operating System :" + " " + Specs.getOperatingSystemName() + "\n" + "Version :" + " " + Specs.getOperatingSystemVersion(), osIcon);
         JPanel cpuPanel = InfoPanel.createInfoPanel("CPU", "CPU :" + " " + Specs.getCpuName() + "\n" + "Cores :" + " " + Specs.getCpuCores() + "\n" + "Threads :" + " " + Specs.getCpuThreads(), cpuIcon);
-        JPanel gpuPanel = InfoPanel.createInfoPanel("GPU", "GPU :" + " " + Specs.getGpuName() + "\n" + "Vram :" + " " + Specs.getGpuVram() + " " + "MB", gpuIcon);
+        long vram = Long.parseLong(Specs.getGpuVram()); JPanel gpuPanel = InfoPanel.createInfoPanel("GPU", "GPU :" + " " + Specs.getGpuName() + "\nVram :" + " " + (vram == 0L ? "Shared" : vram + " " + "MB"), gpuIcon);
         JPanel ramPanel = InfoPanel.createInfoPanel("RAM", "RAM (Total) :" + " " + Specs.getRamSize() + " " + "MB" + "\n" + "RAM (Used) :" + " " + Specs.getRamUsed() + " " + "MB" + "\n" + "RAM (Free) :" + " " + Specs.getRamFree() + " " + "MB", ramIcon);
 
         mainPanel.add(osPanel);
@@ -109,7 +109,7 @@ public class GUI {
         // Reuse the already loaded icons
         updateTextArea((JPanel) mainPanel.getComponent(0), "Operating System :" + " " + Specs.getOperatingSystemName() + "\n" + "Version :" + " " + Specs.getOperatingSystemVersion(), osIcon);
         updateTextArea((JPanel) mainPanel.getComponent(1), "CPU :" + " " + Specs.getCpuName() + "\n" + "Cores :" + " " + Specs.getCpuCores() + "\n" + "Threads :" + " " + Specs.getCpuThreads(), cpuIcon);
-        updateTextArea((JPanel) mainPanel.getComponent(2), "GPU :" + " " + Specs.getGpuName() + "\n" + "Vram :" + " " + Specs.getGpuVram() + " " + "MB", gpuIcon);
+        long vram = Long.parseLong(Specs.getGpuVram()); JPanel gpuPanel = InfoPanel.createInfoPanel("GPU", "GPU :" + " " + Specs.getGpuName() + "\nVram :" + " " + (vram == 0L ? "Shared" : vram + " " + "MB"), gpuIcon);
         updateTextArea((JPanel) mainPanel.getComponent(3), "RAM (Total) :" + " " + Specs.getRamSize() + " " + "MB" + "\n" + "RAM (Used) :" + " " + Specs.getRamUsed() + " " + "MB" + "\n" + "RAM (Free) :" + " " + Specs.getRamFree() + " " + "MB", ramIcon);
     }
 
