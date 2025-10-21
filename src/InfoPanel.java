@@ -1,5 +1,6 @@
 // InfoPanel.java
 
+import platform.BsdOSInfo;
 import platform.LinuxOSInfo;
 
 import javax.swing.*;
@@ -42,6 +43,8 @@ public class InfoPanel {
             return getMacOsIconPath(osVersion);
         } else if (osName.contains("unix") || osName.contains("linux")) {
             return getLinuxOsIconPath(LinuxOSInfo.getLinuxOSVersion());
+        } else if (osName.contains("bsd")) {
+            return getBSDOsIconPath(BsdOSInfo.getBsdOSVersion());
         } else {
             return "/icon/Unknown 128x128.png";
         }
@@ -90,6 +93,14 @@ public class InfoPanel {
         if (osVersion.toLowerCase().contains("red")) return "/icon/Red Hat Linux 128x128.png";
         if (osVersion.toLowerCase().contains("hat")) return "/icon/Red Hat Linux 128x128.png";
         return "/icon/GNU Linux 128x128.png";
+    }
+
+    private static String getBSDOsIconPath(String osVersion) {
+        if (osVersion.toLowerCase().contains("free")) return "/icon/Free BSD 128x128.png";
+        if (osVersion.toLowerCase().contains("net")) return "/icon/Net BSD 128x128.png";
+        if (osVersion.toLowerCase().contains("open")) return "/icon/Open BSD 128x128.png";
+        if (osVersion.toLowerCase().contains("ghost")) return "/icon/Ghost BSD 128x128.png";
+        return "/icon/BSD 128x128.png";
     }
 
     // Method to get the CPU icon
