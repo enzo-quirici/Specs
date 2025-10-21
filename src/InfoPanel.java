@@ -73,6 +73,7 @@ public class InfoPanel {
         if (osVersion.contains("13")) return "/icon/Mac OS 13 128x128.png";
         if (osVersion.contains("12")) return "/icon/Mac OS 12 128x128.png";
         if (osVersion.contains("11")) return "/icon/Mac OS 11 128x128.png";
+        if (osVersion.contains("26")) return "/icon/Mac OS 26 128x128.png";
         return "/icon/Apple Mac OS 128x128.png";
     }
 
@@ -161,7 +162,7 @@ public class InfoPanel {
         } else if (gpuInfo.toLowerCase().contains("adreno")) {
             iconPath = "/icon/Adreno 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("vmware")) {
-            iconPath = "/icon/VMware 128x128.png";
+            iconPath = "/icon/VM Ware 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("virtual")) {
                 iconPath = "/icon/Virtual Machine 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("vm")) {
