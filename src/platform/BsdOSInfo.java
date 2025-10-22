@@ -1,41 +1,31 @@
 package platform;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class BsdOSInfo {
 
     public static String getBsdOSVersion() {
-        String osVersion = "Unknown BSD";
-        String osName = System.getProperty("os.name").toLowerCase();
-
-        try {
-            if (osName.contains("freebsd")) {
-                // FreeBSD : uname -r ou freebsd-version
-                Process process = new ProcessBuilder("freebsd-version").start();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                String version = reader.readLine();
-                if (version != null && !version.isEmpty()) {
-                    osVersion = "FreeBSD " + version.trim();
-                }
-            } else if (osName.contains("openbsd") || osName.contains("netbsd")) {
-                // OpenBSD/NetBSD : uname -r pour la version
-                Process process = new ProcessBuilder("uname", "-r").start();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                String version = reader.readLine();
-                if (version != null && !version.isEmpty()) {
-                    if (osName.contains("openbsd")) {
-                        osVersion = "OpenBSD " + version.trim();
-                    } else {
-                        osVersion = "NetBSD " + version.trim();
+        File osRelease = new File("/etc/os-release");
+        if (osRelease.exists()) {
+            String name = null;
+            String pretty = null;
+            try (BufferedReader br = new BufferedReader(new FileReader(osRelease))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    line = line.trim();
+                    if (line.startsWith("NAME=")) {
+                        name = line.substring(5).replace("\"", "");
+                    } else if (line.startsWith("PRETTY_NAME=")) {
+                        pretty = line.substring(12).replace("\"", "");
                     }
                 }
+            } catch (IOException ignored) {
             }
-        } catch (IOException e) {
-            osVersion = "Error retrieving BSD OS information.";
+
+            if (pretty != null && !pretty.isEmpty()) return pretty;
+            if (name != null && !name.isEmpty()) return name;
         }
 
-        return osVersion;
+        return "Unknown BSD";
     }
 }
