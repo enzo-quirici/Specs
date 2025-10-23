@@ -14,7 +14,7 @@
 
 # Minimum Requirements :
 
-🖥️ OS : Windows 7 or better / Linux 4.4 or better / Mac OS 10.11 or better / Free BSD Based OS 12 or better  
+🖥️ OS : Windows 7 or better / Linux Kernel version 4.4 or better / Mac OS 10.11 or better / Free BSD Based OS 12 or better  
 ⚙️ CPU : 64 bits CPU  
 💾 RAM : 512 MO of RAM  
 💿 Storage : 512 Mo of free space  
