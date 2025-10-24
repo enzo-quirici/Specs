@@ -11,5 +11,6 @@
     <orderEntry type="library" exported="" name="github.oshi.core" level="application" />
     <orderEntry type="library" exported="" name="slf4j.api" level="application" />
     <orderEntry type="library" exported="" name="slf4j.jdk14" level="application" />
+    <orderEntry type="library" exported="" name="eclipse.platform.e4.ui.swt.gtk" level="application" />
   </component>
 </module>
