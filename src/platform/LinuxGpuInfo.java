@@ -2,6 +2,10 @@
 
 package platform;
 
+import com.sun.jna.Library;
+import com.sun.jna.Native;
+import com.sun.jna.Pointer;
+import com.sun.jna.Structure;
 import oshi.SystemInfo;
 import oshi.hardware.GraphicsCard;
 import oshi.hardware.HardwareAbstractionLayer;
@@ -12,6 +16,9 @@ import java.util.List;
 
 public class LinuxGpuInfo {
 
+    // -------------------------
+// GPU NAME
+// -------------------------
     public static String getGpuName() {
         String gpuName = getGpuNameFromGlxInfo();
 
@@ -22,7 +29,8 @@ public class LinuxGpuInfo {
             }
         }
 
-        return gpuName;
+        // Nettoyage pour NVIDIA
+        return cleanNvidiaName(gpuName);
     }
 
     private static String getGpuNameFromOshi() {
@@ -35,8 +43,7 @@ public class LinuxGpuInfo {
                 GraphicsCard gpu = graphicsCards.get(0);
                 return removeUnwantedParenthesesContent(gpu.getName());
             }
-        } catch (Exception e) {
-        }
+        } catch (Exception ignored) {}
         return "Unknown GPU";
     }
 
@@ -52,8 +59,7 @@ public class LinuxGpuInfo {
                     return removeUnwantedParenthesesContent(line.split(":")[1].trim());
                 }
             }
-        } catch (Exception e) {
-        }
+        } catch (Exception ignored) {}
         return "Unknown GPU";
     }
 
@@ -69,22 +75,62 @@ public class LinuxGpuInfo {
                     return removeUnwantedParenthesesContent(line.split(":")[2].trim());
                 }
             }
-        } catch (Exception e) {
-        }
+        } catch (Exception ignored) {}
         return "Unknown GPU";
     }
 
-    public static long getGpuVram() {
-        long vram = getVramFromGlxInfo();
+// -------------------------
+// Nettoyage pour NVIDIA
+// -------------------------
+    private static String cleanNvidiaName(String name) {
+        if (name == null || name.isEmpty()) return "Unknown GPU";
 
-        if (vram == 0) {  //
-            vram = getVramFromLspci();
-            if (vram == 0) {
-                vram = getVramFromOshi();
+        name = name.trim();
+
+        if (name.toLowerCase().contains("nvidia corporation")) {
+            int start = name.indexOf('[');
+            int end = name.indexOf(']');
+            if (start >= 0 && end > start) {
+                String insideBrackets = name.substring(start + 1, end).trim();
+                return "NVIDIA" + " " + insideBrackets;
+            }
+            return name;
+        }
+
+        // Pour les autres GPU, juste enlever le contenu entre parenthèses
+        return removeUnwantedParenthesesContent(name);
+    }
+
+    // -------------------------
+    // GPU VRAM (MiB)
+    // -------------------------
+    public static long getGpuVram() {
+        // 1️⃣ récupère d'abord le nom du GPU
+        String gpuName = getGpuName();
+
+        // 2️⃣ essaye OSHI en premier
+        long vram = getVramFromOshi();
+
+        // 3️⃣ si GPU NVIDIA / GeForce, fallback NVML si OSHI a raté ou valeur trop faible
+        if ((gpuName.toLowerCase().contains("nvidia") || gpuName.toLowerCase().contains("geforce"))
+                && (vram == 0 || vram <= 288)) {
+            long nvmlVram = getVramFromNvml();
+            if (nvmlVram > 0) {
+                return nvmlVram;
             }
         }
 
-        return vram;
+        // 4️⃣ si OSHI a retourné une valeur correcte, on la garde
+        if (vram > 0) {
+            return vram;
+        }
+
+        // 5️⃣ fallback sur glxinfo
+        vram = getVramFromGlxInfo();
+        if (vram > 0) return vram;
+
+        // 6️⃣ dernier recours, lspci
+        return getVramFromLspci();
     }
 
     private static long getVramFromOshi() {
@@ -95,10 +141,9 @@ public class LinuxGpuInfo {
 
             if (!graphicsCards.isEmpty()) {
                 GraphicsCard gpu = graphicsCards.get(0);
-                return gpu.getVRam() / (1024 * 1024);
+                return gpu.getVRam() / (1024 * 1024); // bytes → MiB
             }
-        } catch (Exception e) {
-        }
+        } catch (Exception ignored) {}
         return 0;
     }
 
@@ -116,8 +161,7 @@ public class LinuxGpuInfo {
                     return Long.parseLong(line.replaceAll("[^0-9]", "").trim());
                 }
             }
-        } catch (Exception e) {
-        }
+        } catch (Exception ignored) {}
         return 0;
     }
 
@@ -143,11 +187,66 @@ public class LinuxGpuInfo {
                     break;
                 }
             }
-        } catch (Exception e) {
-        }
+        } catch (Exception ignored) {}
         return 0;
     }
 
+    // -------------------------
+    // NVML via JNA
+    // -------------------------
+    private interface NVML extends Library {
+        NVML INSTANCE = Native.load("nvidia-ml", NVML.class);
+
+        int nvmlInit();
+        int nvmlShutdown();
+        int nvmlDeviceGetCount(int[] count);
+        int nvmlDeviceGetHandleByIndex(int index, Pointer[] device);
+        int nvmlDeviceGetMemoryInfo(Pointer device, NvmlMemory memory);
+
+        class NvmlMemory extends Structure {
+            public long total;
+            public long free;
+            public long used;
+
+            @Override
+            protected List<String> getFieldOrder() {
+                return List.of("total", "free", "used");
+            }
+        }
+    }
+
+    private static long getVramFromNvml() {
+        try {
+            if (NVML.INSTANCE.nvmlInit() != 0) return 0;
+
+            int[] count = new int[1];
+            if (NVML.INSTANCE.nvmlDeviceGetCount(count) != 0 || count[0] == 0) {
+                NVML.INSTANCE.nvmlShutdown();
+                return 0;
+            }
+
+            Pointer[] device = new Pointer[1];
+            if (NVML.INSTANCE.nvmlDeviceGetHandleByIndex(0, device) != 0) {
+                NVML.INSTANCE.nvmlShutdown();
+                return 0;
+            }
+
+            NVML.NvmlMemory memory = new NVML.NvmlMemory();
+            if (NVML.INSTANCE.nvmlDeviceGetMemoryInfo(device[0], memory) != 0) {
+                NVML.INSTANCE.nvmlShutdown();
+                return 0;
+            }
+
+            NVML.INSTANCE.nvmlShutdown();
+            return memory.total / (1024 * 1024); // MiB
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    // -------------------------
+    // UTILS
+    // -------------------------
     private static String removeUnwantedParenthesesContent(String name) {
         return name.replaceAll("\\s*\\(.*?\\)", "");
     }
