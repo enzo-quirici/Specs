@@ -1,3 +1,16 @@
+[![Java](https://img.shields.io/badge/Java-17%2F21-blue.svg?logo=java)](https://adoptium.net/)
+[![FreeBSD](https://img.shields.io/badge/FreeBSD-supported-red.svg?logo=freebsd)](https://www.freshports.org/java/openjdk17/)
+[![GhostBSD](https://img.shields.io/badge/GhostBSD-supported-3f5cff.svg?logo=ghost)](https://www.ghostbsd.org/)
+[![Linux](https://img.shields.io/badge/Linux-supported-green.svg?logo=linux)](https://openjdk.java.net/)
+[![macOS](https://img.shields.io/badge/macOS-supported-lightgrey.svg?logo=apple)](https://adoptium.net/)
+[![Windows](https://img.shields.io/badge/Windows-supported-blue.svg?logo=windows)](https://adoptium.net/)
+[![Arch Linux](https://img.shields.io/badge/Arch-Linux-blue.svg?logo=arch-linux)](https://archlinux.org/packages/?q=openjdk)
+[![Debian](https://img.shields.io/badge/Debian-supported-a80030.svg?logo=debian)](https://packages.debian.org/search?keywords=openjdk)
+[![Fedora](https://img.shields.io/badge/Fedora-supported-294172.svg?logo=fedora)](https://src.fedoraproject.org/rpms/java-17-openjdk)
+[![Gentoo](https://img.shields.io/badge/Gentoo-supported-54487a.svg?logo=gentoo)](https://packages.gentoo.org/packages/dev-java/openjdk)
+
+---
+
 # Specs :
 
 ### A Java application that displays detailed information about your PC's hardware.
@@ -28,15 +41,16 @@
 - ⚠️ Partial or Special Case
 - 🟧 Not Available/Unknown
 
-| OS           | Launch    | Installer | Standalone Version   | Icon | Stress Test | OS | CPU  | RAM  | VRAM  |
-|--------------|-----------|-----------|----------------------|------|-------------|----|------|------|-------|
-| Windows      | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
-| Arch Linux   | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
-| Ubuntu       | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
-| Debian       | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
-| Fedora       | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
-| Gentoo Linux | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
-| Mac OS       | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| OS                | Launch    | Installer | Standalone Version   | Icon | Stress Test | OS | CPU  | RAM  | VRAM  |
+|-------------------|-----------|-----------|----------------------|------|-------------|----|------|------|-------|
+| Windows           | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Arch Linux        | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Ubuntu            | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Debian            | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Fedora            | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Gentoo Linux      | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| Mac OS            | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
+| BSD (Should Work) | ✅        | ✅        | ✅                  | ✅   | ✅          | ✅ | ✅  | ✅   | ✅    |
 
 # Validation :
 
@@ -91,3 +105,9 @@ To confirm that glxinfo is installed correctly, run :
 glxinfo | grep "OpenGL version"
 ```
 If glxinfo returns OpenGL version information, the installation was successful.
+
+# Gneu Gneu On ne peut pas voir le stockage. / The app is ugly.
+
+it's a choice, really not, but really not that I don't have the skills to do better.
+
+Try Specs Plus By Nat 647 : https://github.com/nat649/SpecsPlus
