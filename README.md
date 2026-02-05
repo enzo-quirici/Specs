@@ -110,4 +110,4 @@ If glxinfo returns OpenGL version information, the installation was successful.
 
 it's a choice, really not, but really not that I don't have the skills to do better.
 
-Try Specs Plus By Nat 647 : https://github.com/nat649/SpecsPlus
+Try Specs Plus By Nat 649 : https://github.com/nat649/SpecsPlus
