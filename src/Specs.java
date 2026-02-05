@@ -1,5 +1,3 @@
-//Specs.java
-
 import java.io.IOException;
 import java.util.Locale;
 import platform.*;
@@ -8,22 +6,21 @@ public class Specs {
 
     public static String getOperatingSystemName() {
         String osName = System.getProperty("os.name");
-
         osName = osName.replace("-", " ");
-
         return osName;
     }
 
     public static String getOperatingSystemVersion() {
-        String osName = System.getProperty("os.name");
+        String osName = System.getProperty("os.name").toLowerCase();
         String osVersion = System.getProperty("os.version");
 
-        if (osName.toLowerCase().equals("linux")) {
+        if (osName.contains("linux")) {
             osVersion = LinuxOSInfo.getLinuxOSVersion();
+        } else if (osName.contains("bsd")) {
+            osVersion = BsdOSInfo.getBsdOSVersion();
         }
 
         osVersion = osVersion.replace("-", " ");
-
         return osVersion;
     }
 
@@ -37,11 +34,19 @@ public class Specs {
             cpuName = LinuxCpuInfo.getCpuName();
         } else if (osName.contains("win")) {
             cpuName = WindowsCpuInfo.getCpuName();
+        } else if (osName.contains("bsd")) {
+            cpuName = BsdCpuInfo.getCpuName();
         } else {
             cpuName = "Unknown CPU";
         }
 
-        cpuName = cpuName.replaceAll("\\(.*?\\)", "").trim();
+        cpuName = cpuName
+                .replaceAll("\\(.*?\\)", "")
+                .replace("-", " ")
+                .replaceAll("@?\\s*\\d+(\\.\\d+)?\\s*ghz", "")
+                .replaceAll("(?i)\\b\\d{1,2}(st|nd|rd|th)\\s+gen\\b", "")
+                .replaceAll("\\s+", " ")
+                .trim();
 
         return cpuName;
     }
@@ -55,6 +60,8 @@ public class Specs {
                 return MacCpuInfo.getMacPhysicalCores();
             } else if (osName.contains("linux")) {
                 return LinuxCpuInfo.getLinuxPhysicalCores();
+            } else if (osName.contains("bsd")) {
+                return BsdCpuInfo.getBsdPhysicalCores();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,10 +73,8 @@ public class Specs {
         return Runtime.getRuntime().availableProcessors();
     }
 
-
     public static String getGpuName() {
         String gpuName = "";
-        long gpuVram = 0;
         String osName = System.getProperty("os.name").toLowerCase();
 
         if (osName.contains("mac")) {
@@ -78,6 +83,8 @@ public class Specs {
             gpuName = LinuxGpuInfo.getGpuName();
         } else if (osName.contains("win")) {
             gpuName = WindowsGpuInfo.getGpuName();
+        } else if (osName.contains("bsd")) {
+            gpuName = BsdGpuInfo.getGpuName();
         } else {
             gpuName = "Unknown GPU";
         }
@@ -90,7 +97,6 @@ public class Specs {
     }
 
     public static String getGpuVram() {
-        String gpuName = "";
         long gpuVram = 0;
         String osName = System.getProperty("os.name").toLowerCase();
 
@@ -100,14 +106,15 @@ public class Specs {
             gpuVram = LinuxGpuInfo.getGpuVram();
         } else if (osName.contains("win")) {
             gpuVram = WindowsGpuInfo.getGpuVram();
+        } else if (osName.contains("bsd")) {
+            gpuVram = BsdGpuInfo.getGpuVram();
         } else {
-            gpuVram = Long.parseLong("Unknown Vram");
+            gpuVram = -1;
         }
 
         return String.valueOf(gpuVram);
     }
 
-    // Method to get total RAM size based on the OS
     public static long getRamSize() {
         String osName = System.getProperty("os.name").toLowerCase();
 
@@ -117,12 +124,13 @@ public class Specs {
             return MacRamInfo.getRamSize();
         } else if (osName.contains("win")) {
             return WindowsRamInfo.getRamSize();
+        } else if (osName.contains("bsd")) {
+            return BsdRamInfo.getRamSize();
         } else {
             return -1;
         }
     }
 
-    // Method to get used RAM size based on the OS
     public static long getRamUsed() {
         String osName = System.getProperty("os.name").toLowerCase();
 
@@ -132,12 +140,13 @@ public class Specs {
             return MacRamInfo.getRamUsed();
         } else if (osName.contains("win")) {
             return WindowsRamInfo.getRamUsed();
+        } else if (osName.contains("bsd")) {
+            return BsdRamInfo.getRamUsed();
         } else {
             return -1;
         }
     }
 
-    // Method to get free RAM size based on the OS
     public static long getRamFree() {
         String osName = System.getProperty("os.name").toLowerCase();
 
@@ -147,6 +156,8 @@ public class Specs {
             return MacRamInfo.getRamFree();
         } else if (osName.contains("win")) {
             return WindowsRamInfo.getRamFree();
+        } else if (osName.contains("bsd")) {
+            return BsdRamInfo.getRamFree();
         } else {
             return -1;
         }

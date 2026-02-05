@@ -7,7 +7,7 @@ public class About {
     public static void showAbout(JFrame parent) {
         ImageIcon icon = new ImageIcon(Objects.requireNonNull(GUI.class.getResource("/icon/Icon 128x128.png")));
         JOptionPane.showMessageDialog(parent,
-                "Java Specs\nVersion 2.0\n© 2025",
+                "Java Specs\nVersion 2.1\n© 2025",
                 "About",
                 JOptionPane.INFORMATION_MESSAGE,
                 icon);

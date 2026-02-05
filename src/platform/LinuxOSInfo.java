@@ -22,13 +22,31 @@ public class LinuxOSInfo {
                     if (line.startsWith("NAME=")) {
                         name = line.replace("NAME=", "").replace("\"", "").trim();
                     } else if (line.startsWith("VERSION=")) {
-                        // Extract version and remove any content in parentheses
                         version = line.replace("VERSION=", "").replace("\"", "").trim();
-                        version = version.split("\\s*\\(")[0].trim();
                     }
                 }
 
-                if (name != null && version != null) {
+                // Cas Arch Linux
+                if ((version != null && version.toLowerCase().contains("arch")) ||
+                        (name != null && name.toLowerCase().contains("arch"))) {
+                    Process unameProc = new ProcessBuilder("uname", "-r").start();
+                    BufferedReader unameReader = new BufferedReader(new InputStreamReader(unameProc.getInputStream()));
+                    String kernelVersion = unameReader.readLine().trim();
+                    String cleanedKernelVersion = kernelVersion.split("-")[0];
+                    osVersion = cleanedKernelVersion + " Arch Linux";
+                }
+                // Cas Gentoo Linux
+                else if ((version != null && version.toLowerCase().contains("gentoo")) ||
+                        (name != null && name.toLowerCase().contains("gentoo"))) {
+                    Process unameProc = new ProcessBuilder("uname", "-r").start();
+                    BufferedReader unameReader = new BufferedReader(new InputStreamReader(unameProc.getInputStream()));
+                    String kernelVersion = unameReader.readLine().trim();
+                    String cleanedKernelVersion = kernelVersion.split("-")[0];
+                    osVersion = cleanedKernelVersion + " Gentoo Linux";
+                }
+                // Cas général
+                else if (name != null && version != null) {
+                    version = version.split("\\s*\\(")[0].trim(); // enlever le contenu entre parenthèses
                     osVersion = name + " " + version;
                 }
 

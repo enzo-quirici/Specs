@@ -21,9 +21,9 @@ public class Refresh {
         if (mainPanel.getComponentCount() >= 4) {
             try {
                 // Mise à jour des informations dans chaque panneau
-                GUI.updateTextArea((JPanel) mainPanel.getComponent(0), "Operating System :" + " " + Specs.getOperatingSystemName() + "\n" + "Version" + " " + Specs.getOperatingSystemVersion(), GUI.osIcon);
+                GUI.updateTextArea((JPanel) mainPanel.getComponent(0), "Operating System :" + " " + Specs.getOperatingSystemName() + "\n" + "Version :" + " " + Specs.getOperatingSystemVersion(), GUI.osIcon);
                 GUI.updateTextArea((JPanel) mainPanel.getComponent(1), "CPU :" + " " + Specs.getCpuName() + "\n" + "Cores :" + " " + Specs.getCpuCores() + "\n" + "Threads :" + " " + Specs.getCpuThreads(), GUI.cpuIcon);
-                GUI.updateTextArea((JPanel) mainPanel.getComponent(2), "GPU :" + " " + Specs.getGpuName() + "\n" + "Vram :" + " " + Specs.getGpuVram() + " " + "MB", GUI.gpuIcon);
+                long vram = Long.parseLong(Specs.getGpuVram()); JPanel gpuPanel = InfoPanel.createInfoPanel("GPU", "GPU :" + " " + Specs.getGpuName() + "\nVram :" + " " + (vram == 0L ? "Shared" : vram + " " + "MB"), GUI.gpuIcon);
                 GUI.updateTextArea((JPanel) mainPanel.getComponent(3), "RAM (Total) :" + " " + Specs.getRamSize() + " " + "MB" + "\n" + "RAM (Used) :" + " " + Specs.getRamUsed() + " " + "MB" + "\n" + "RAM (Free) :" + " " + Specs.getRamFree() + " " + "MB", GUI.ramIcon);
 
                 // Demander au garbage collector de libérer la mémoire non utilisée après la mise à jour

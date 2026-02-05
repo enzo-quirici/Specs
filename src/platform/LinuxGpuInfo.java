@@ -13,12 +13,12 @@ import java.util.List;
 public class LinuxGpuInfo {
 
     public static String getGpuName() {
-        String gpuName = getGpuNameFromOshi();
+        String gpuName = getGpuNameFromGlxInfo();
 
         if (gpuName.equals("Unknown GPU")) {
-            gpuName = getGpuNameFromGlxInfo();
+            gpuName = getGpuNameFromLspci();
             if (gpuName.equals("Unknown GPU")) {
-                gpuName = getGpuNameFromLspci();
+                gpuName = getGpuNameFromOshi();
             }
         }
 
@@ -75,12 +75,12 @@ public class LinuxGpuInfo {
     }
 
     public static long getGpuVram() {
-        long vram = getVramFromOshi();
+        long vram = getVramFromGlxInfo();
 
         if (vram == 0) {  //
-            vram = getVramFromGlxInfo();
+            vram = getVramFromLspci();
             if (vram == 0) {
-                vram = getVramFromLspci();
+                vram = getVramFromOshi();
             }
         }
 

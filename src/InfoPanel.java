@@ -1,5 +1,6 @@
 // InfoPanel.java
 
+import platform.BsdOSInfo;
 import platform.LinuxOSInfo;
 
 import javax.swing.*;
@@ -42,6 +43,8 @@ public class InfoPanel {
             return getMacOsIconPath(osVersion);
         } else if (osName.contains("unix") || osName.contains("linux")) {
             return getLinuxOsIconPath(LinuxOSInfo.getLinuxOSVersion());
+        } else if (osName.contains("bsd")) {
+            return getBSDOsIconPath(BsdOSInfo.getBsdOSVersion());
         } else {
             return "/icon/Unknown 128x128.png";
         }
@@ -70,6 +73,7 @@ public class InfoPanel {
         if (osVersion.contains("13")) return "/icon/Mac OS 13 128x128.png";
         if (osVersion.contains("12")) return "/icon/Mac OS 12 128x128.png";
         if (osVersion.contains("11")) return "/icon/Mac OS 11 128x128.png";
+        if (osVersion.contains("26")) return "/icon/Mac OS 26 128x128.png";
         return "/icon/Apple Mac OS 128x128.png";
     }
 
@@ -90,6 +94,14 @@ public class InfoPanel {
         if (osVersion.toLowerCase().contains("red")) return "/icon/Red Hat Linux 128x128.png";
         if (osVersion.toLowerCase().contains("hat")) return "/icon/Red Hat Linux 128x128.png";
         return "/icon/GNU Linux 128x128.png";
+    }
+
+    private static String getBSDOsIconPath(String osVersion) {
+        if (osVersion.toLowerCase().contains("free")) return "/icon/Free BSD 128x128.png";
+        if (osVersion.toLowerCase().contains("net")) return "/icon/Net BSD 128x128.png";
+        if (osVersion.toLowerCase().contains("open")) return "/icon/Open BSD 128x128.png";
+        if (osVersion.toLowerCase().contains("ghost")) return "/icon/Ghost BSD 128x128.png";
+        return "/icon/BSD 128x128.png";
     }
 
     // Method to get the CPU icon
@@ -133,12 +145,14 @@ public class InfoPanel {
             iconPath = "/icon/Intel GPU 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("amd")) {
             iconPath = "/icon/AMD Radeon 128x128.png";
-        } else if (gpuInfo.toLowerCase().contains("ati")) {
-            iconPath = "/icon/ATI Graphics 128x128.png  ";
-        } else if (gpuInfo.toLowerCase().contains("radeon")) {
-            iconPath = "/icon/AMD Radeon 128x128.png";
+        } else if (gpuInfo.toLowerCase().contains("force")) {
+            iconPath = "/icon/Nvidia 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("nvidia")) {
             iconPath = "/icon/Nvidia 128x128.png";
+        } else if (gpuInfo.toLowerCase().contains("ati")) {
+            iconPath = "/icon/ATI Graphics 128x128.png";
+        } else if (gpuInfo.toLowerCase().contains("radeon")) {
+            iconPath = "/icon/AMD Radeon 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("apple")) {
             iconPath = "/icon/Apple GPU 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("arm")) {
@@ -150,11 +164,13 @@ public class InfoPanel {
         } else if (gpuInfo.toLowerCase().contains("adreno")) {
             iconPath = "/icon/Adreno 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("vmware")) {
-            iconPath = "/icon/VMware 128x128.png";
+            iconPath = "/icon/VM Ware 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("virtual")) {
                 iconPath = "/icon/Virtual Machine 128x128.png";
         } else if (gpuInfo.toLowerCase().contains("vm")) {
             iconPath = "/icon/Virtual Machine 128x128.png";
+        } else if (gpuInfo.toLowerCase().contains("hd")) {
+            iconPath = "/icon/Intel GPU 128x128.png";
         } else {
             iconPath = "/icon/Unknown GPU 128x128.png";
         }
