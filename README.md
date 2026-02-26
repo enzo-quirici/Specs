@@ -59,6 +59,11 @@
 - This feature requires a server to be used.  
 - currently there is no official server available, but you can create one by using the guide [how to create you own Specs Server](https://github.com/enzo-quirici/Specs-Server/).
 
+# Wayland USER :
+
+- At least on Arch Linux the app may be completly white launch it with the argument :
+```_JAVA_AWT_WM_NONREPARENTING=1 GDK_BACKEND=x11 java -jar Specs.jar```
+
 # dependency :
 
 ## libjpeg turbo 8 :
