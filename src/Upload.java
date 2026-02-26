@@ -27,7 +27,7 @@ public class Upload {
         // ===== 2. DEVICE FRIENDLY NAME =====
         String denomination = JOptionPane.showInputDialog(
                 null,
-                "Enter a friendly name for the device\n(ex: Gaming PC, Pro Laptop, Windows Shitbox, etc.):",
+                "Enter a friendly name for the device\n(ex: Gaming PC, Pro Laptop, Windows Workstation, etc.):",
                 "Friendly Name",
                 JOptionPane.QUESTION_MESSAGE
         );
