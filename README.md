@@ -116,3 +116,6 @@ If glxinfo returns OpenGL version information, the installation was successful.
 it's a choice, really not, but really not that I don't have the skills to do better.
 
 Try Specs Plus By Nat 649 : https://github.com/nat649/SpecsPlus
+
+## Stargazers over time
+[![Stargazers over time](https://starchart.cc/enzo-quirici/Specs.svg?variant=adaptive)](https://starchart.cc/enzo-quirici/Specs)
