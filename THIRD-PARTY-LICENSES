@@ -1,0 +1,71 @@
+This software includes third-party libraries.
+
+==================================================
+OSHI 5.8.7
+==================================================
+
+Copyright (c) The OSHI Project Contributors
+
+Licensed under the MIT License.
+
+https://github.com/oshi/oshi
+
+==================================================
+JNA 5.10.0
+==================================================
+
+Copyright (c) Timothy Wall and others
+
+Licensed under:
+- Apache License 2.0
+OR
+- GNU Lesser General Public License (LGPL) 2.1
+
+https://github.com/java-native-access/jna
+
+==================================================
+JNA Platform 5.10.0
+==================================================
+
+Copyright (c) Timothy Wall and others
+
+Licensed under:
+- Apache License 2.0
+OR
+- GNU Lesser General Public License (LGPL) 2.1
+
+https://github.com/java-native-access/jna
+
+==================================================
+SLF4J API 1.7.32
+==================================================
+
+Copyright (c) SLF4J Contributors
+
+Licensed under the MIT License.
+
+https://www.slf4j.org/
+
+==================================================
+SLF4J JDK14 1.7.32
+==================================================
+
+Copyright (c) SLF4J Contributors
+
+Licensed under the MIT License.
+
+https://www.slf4j.org/
+
+==================================================
+MigLayout
+==================================================
+
+Copyright (c) MiG InfoCom AB
+
+Licensed under the BSD 3-Clause License.
+
+https://www.miglayout.com/
+
+==================================================
+END OF THIRD-PARTY NOTICES
+==================================================
