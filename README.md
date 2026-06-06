@@ -119,3 +119,8 @@ Try Specs Plus By Nat 649 : https://github.com/nat649/SpecsPlus
 
 ## Stargazers over time
 [![Stargazers over time](https://starchart.cc/enzo-quirici/Specs.svg?variant=adaptive)](https://starchart.cc/enzo-quirici/Specs)
+
+## Assets
+
+- CPU icon created by Freepik - Flaticon
+  https://www.flaticon.com/free-icon/cpu_1892518
